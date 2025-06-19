@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <!--
-  GAMING‑INDEX DASHBOARD – LIVE DATA EDITION
-  ────────────────────────────────────────────────────────────────
-  ▸ Looks identical to the previous widget but pulls *real* JSON/CSV
-    from your GitHub Pages every page‑load. No manual refresh needed.
-  ▸ Replace YOUR‑USERNAME in the BASE_URL below with your actual GitHub
-    username. That’s the only thing you ever edit in this file.
+  Gaming-Index widget — midnight-aware timeframe filters
+  • Replace  YOUR-USERNAME  once in BASE_URL
+  • Copy entire file into the repo root (or anywhere you prefer)
 -->
 <html lang="en">
 <head>
@@ -13,20 +10,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gaming Index Tracker</title>
 
-  <!-- Tailwind via CDN -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root{ --gi-navy:#15304B; --gi-orange:#F5A623; }
-    body{background:#F8F9FB;color:var(--gi-navy);}  /* site‑like body */
-    .gi-card{background:#FFFFFF;border:1px solid #E5EAF2;border-radius:1.5rem;box-shadow:0 4px 8px rgba(0,0,0,.04)}
-    .gi-select{background:#FFFFFF;color:var(--gi-navy);border:1px solid var(--gi-navy);border-radius:0.75rem;padding:.25rem .75rem;font-size:.875rem;}
-    .gi-select option{background:#FFFFFF;color:var(--gi-navy);}/* dropdown list */
+    :root { --gi-navy:#15304B; --gi-orange:#F5A623; }
+    body   { background:#F8F9FB; color:var(--gi-navy); }
+    .gi-card { background:#FFF; border:1px solid #E5EAF2;
+               border-radius:1.5rem; box-shadow:0 4px 8px rgba(0,0,0,.04); }
+    .gi-select, .gi-select option {
+      background:#FFF; color:var(--gi-navy); font-size:.875rem;
+    }
+    .gi-select { border:1px solid var(--gi-navy); border-radius:.75rem;
+                 padding:.25rem .75rem; }
   </style>
 
-  <!-- Chart.js UMD build -->
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center p-6">
+
   <div id="widget" class="gi-card w-full max-w-2xl p-8">
     <header class="flex flex-wrap gap-3 items-center justify-between mb-6">
       <h1 class="text-2xl font-semibold tracking-wide">Gaming Index</h1>
@@ -45,68 +47,79 @@
 
     <div id="stats" class="grid grid-cols-3 gap-6 text-center text-sm md:text-base mb-8"></div>
     <div class="h-72 w-full"><canvas id="chart"></canvas></div>
-
-    <footer class="mt-6 text-xs text-gray-500 text-right">Powered by GitHub Pages – auto updates hourly.</footer>
+    <footer class="mt-6 text-xs text-gray-500 text-right">Powered by GitHub Pages — auto-updates hourly/daily.</footer>
   </div>
 
 <script>
-const BASE_URL = "https://leavesnbeans.github.io/gaming-index";  // ← CHANGE ME once
+const BASE_URL = "https://leavesnbeans.github.io/gaming-index";  // ← change once
 
 (async () => {
-  /* 1. fetch latest snapshot */
-  const latest = await fetch(`${BASE_URL}/latest.json`, {cache:'no-store'})
-                    .then(r=>r.json());
+  const latest  = await fetch(`${BASE_URL}/latest.json`, {cache:'no-store'}).then(r=>r.json());
+  const csvText = await fetch(`${BASE_URL}/history.csv`, {cache:'no-store'}).then(r=>r.text());
 
-  /* 2. fetch history csv and parse into array of objects */
-  const csvText = await fetch(`${BASE_URL}/history.csv`, {cache:'no-store'})
-                    .then(r=>r.text());
-  const rows = csvText.trim().split(/\r?\n/).map(r=>r.split(','));
+  const rows   = csvText.trim().split(/\\r?\\n/).map(r=>r.split(','));
   const header = rows.shift();
-  const history = rows.map(r=>{ const o={}; header.forEach((h,i)=>o[h]=i?+r[i]:r[i]); return o; });
+  const history = rows.map(r => { const o={}; header.forEach((h,i)=>o[h]=i?+r[i]:r[i]); return o; });
 
-  /* 3. kick off the UI */
   runWidget(latest, history);
 })();
 
-function runWidget(latestData, histData){
-  const regionSel=document.getElementById('regionSel');
-  const tfSel=document.getElementById('tfSel');
-  const statsDiv=document.getElementById('stats');
+function runWidget(latestData, histData) {
+  const regionSel = document.getElementById('regionSel');
+  const tfSel     = document.getElementById('tfSel');
+  const statsDiv  = document.getElementById('stats');
 
-  const regions=[...new Set(latestData.components.map(c=>c.region)),"All"];
-  regionSel.innerHTML=regions.map(r=>`<option class="gi-select">${r}</option>`).join('');
+  const regions = [...new Set(latestData.components.map(c=>c.region)), "All"];
+  regionSel.innerHTML = regions.map(r=>`<option class="gi-select">${r}</option>`).join('');
 
-  /* Chart.js */
-  const ctx=document.getElementById('chart');
-  const chart=new Chart(ctx,{type:'line',data:{labels:[],datasets:[{label:'',data:[],tension:0.3,borderWidth:3,pointRadius:0,borderColor:getCSS('--gi-orange'),fill:false}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{ticks:{color:'#6B7280'}},y:{ticks:{color:'#6B7280'}}},plugins:{legend:{display:false},tooltip:{backgroundColor:'#FFFFFF',titleColor:'#111827',bodyColor:'#111827',borderColor:'#E5E7EB',borderWidth:1}}}});
+  const ctx = document.getElementById('chart');
+  const chart = new Chart(ctx, {
+    type:'line',
+    data:{labels:[],datasets:[{label:'',data:[],tension:0.3,borderWidth:3,pointRadius:0,borderColor:'#F5A623',fill:false}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      scales:{x:{ticks:{color:'#6B7280'}},y:{ticks:{color:'#6B7280'}}},
+      plugins:{legend:{display:false},
+        tooltip:{backgroundColor:'#FFF',titleColor:'#111827',bodyColor:'#111827',
+                 borderColor:'#E5E7EB',borderWidth:1}}}
+  });
 
-  function getCSS(name){return getComputedStyle(document.documentElement).getPropertyValue(name);}  
-  function fmt(x){return Number(x).toLocaleString(undefined,{maximumFractionDigits:2});}
+  const fmt = x => Number(x).toLocaleString(undefined,{maximumFractionDigits:2});
 
-  function render(){
-    const region=regionSel.value;
-    const days=parseInt(tfSel.value,10);
-    const now=new Date(latestData.last_updated);
-    const since=new Date(now); since.setDate(since.getDate()-days);
-    const slice=histData.filter(h=>days>=9999||new Date(h.timestamp)>=since);
+  function render() {
+    const region = regionSel.value;
+    const days   = +tfSel.value;
 
-    chart.data.labels=slice.map(h=>h.timestamp.slice(0,10));
-    chart.data.datasets[0].data=slice.map(h=>h[region]);
+    // ── midnight-aware cutoff ──
+    const now = new Date(latestData.last_updated);
+    const since = new Date(now);
+    since.setUTCHours(0,0,0,0);         // midnight UTC today
+    since.setDate(since.getDate() - (days - 1));
+
+    const slice = histData.filter(h =>
+        days >= 9999 || new Date(h.timestamp) >= since);
+
+    chart.data.labels = slice.map(h => h.timestamp.slice(0,10));
+    chart.data.datasets[0].data = slice.map(h => h[region]);
     chart.update();
 
-    const latestVal=slice.at(-1)[region];
-    const prevVal=slice.length>1? slice.at(-2)[region] : latestVal;
-    const change=latestVal-prevVal; const pct=change/prevVal*100;
-    const tfLabel={1:'1‑day',7:'1‑week',30:'1‑month',182:'6‑month',365:'1‑year',9999:'period'}[days]||'period';
+    const latestVal = slice.at(-1)?.[region] ?? 0;
+    const prevVal   = slice.length > 1 ? slice.at(-2)[region] : latestVal;
+    const change    = latestVal - prevVal;
+    const pct       = prevVal ? (change/prevVal*100) : 0;
+    const tfLabel   = {1:'1-day',7:'1-week',30:'1-month',182:'6-month',365:'1-year',9999:'period'}[days] || '';
 
-    statsDiv.innerHTML=`
+    statsDiv.innerHTML = `
       <div><p class="text-gray-500">Value</p><p class="font-medium">$${fmt(latestVal)}</p></div>
-      <div><p class="text-gray-500">Δ ${tfLabel}</p><p class="${change>=0?'text-green-600':'text-red-600'}">${change>=0?'+':''}${fmt(change)} (${pct.toFixed(2)}%)</p></div>
-      <div><p class="text-gray-500">Updated</p><p>${now.toLocaleString()}</p></div>`;
+      <div><p class="text-gray-500">Δ ${tfLabel}</p>
+           <p class="${change>=0?'text-green-600':'text-red-600'}">
+             ${change>=0?'+':''}${fmt(change)} (${pct.toFixed(2)}%)
+           </p></div>
+      <div><p class="text-gray-500">Updated</p>
+           <p>${new Date(latestData.last_updated).toLocaleString()}</p></div>`;
   }
 
-  regionSel.addEventListener('change',render);
-  tfSel.addEventListener('change',render);
+  regionSel.addEventListener('change', render);
+  tfSel.addEventListener('change', render);
   render();
 }
 </script>
