@@ -1,38 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Gaming Index Widget</title>
-
-<!-- Tailwind (single-file CDN) -->
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  :root { --gi-navy:#15304B; --gi-orange:#F5A623 }
-  body   { background:#F8F9FB; color:var(--gi-navy) }
-  .gi-card { background:#FFF; border:1px solid #E5EAF2; border-radius:1.5rem;
-             box-shadow:0 4px 8px rgba(0,0,0,.04) }
-  .gi-select,.gi-select option { background:#FFF; color:var(--gi-navy); font-size:.875rem }
-  .gi-select { border:1px solid var(--gi-navy); border-radius:.75rem; padding:.25rem .75rem }
+  :root{--navy:#15304B;--orange:#F5A623}
+  body{background:#F8F9FB;color:var(--navy)}
+  .card{background:#FFF;border:1px solid #E5EAF2;border-radius:1.5rem;box-shadow:0 4px 8px rgba(0,0,0,.04)}
+  .sel,.sel option{background:#FFF;color:var(--navy);font-size:.875rem}
+  .sel{border:1px solid var(--navy);border-radius:.75rem;padding:.25rem .75rem}
 </style>
-
-<!-- Chart.js v4 -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center p-6">
 
-<div class="gi-card w-full max-w-2xl p-8">
+<div class="card w-full max-w-2xl p-8">
   <header class="flex flex-wrap gap-3 items-center justify-between mb-6">
     <h1 class="text-2xl font-semibold tracking-wide">Gaming Index</h1>
     <div class="flex gap-3">
-      <select id="regionSel" class="gi-select"></select>
-      <select id="tfSel" class="gi-select">
-        <option value="1">1D</option>
-        <option value="7">1W</option>
-        <option value="30">1M</option>
-        <option value="182">6M</option>
-        <option value="365" selected>1Y</option>
-        <option value="9999">MAX</option>
+      <select id="regionSel" class="sel"></select>
+      <select id="tfSel" class="sel">
+        <option value="1">1D</option><option value="7">1W</option>
+        <option value="30">1M</option><option value="182">6M</option>
+        <option value="365" selected>1Y</option><option value="9999">MAX</option>
       </select>
     </div>
   </header>
@@ -45,111 +37,78 @@
 </div>
 
 <script>
-/* >>>>>>>>>>>>>>>>>>>>>>  SET THIS ONCE  <<<<<<<<<<<<<<<<<<<<<< */
+/*  change once */
 const BASE_URL = "https://leavesnbeans.github.io/gaming-index";
-/* ------------------------------------------------------------- */
 
-/* Fetch snapshot + history */
-(async () => {
-  const [latest, csvText] = await Promise.all([
-    fetch(`${BASE_URL}/latest.json`, {cache:'no-store'}).then(r=>r.json()),
-    fetch(`${BASE_URL}/history.csv`, {cache:'no-store'}).then(r=>r.text())
+/* fetch data */
+(async()=>{
+  const [latest,csv]=await Promise.all([
+    fetch(`${BASE_URL}/latest.json`,{cache:'no-store'}).then(r=>r.json()),
+    fetch(`${BASE_URL}/history.csv`,{cache:'no-store'}).then(r=>r.text())
   ]);
 
-  const rows   = csvText.trim().split(/\\r?\\n/).map(r=>r.split(','));
-  const header = rows.shift();
-  const history = rows.map(r => {
-    const o={}; header.forEach((h,i)=>o[h]=i?+r[i]:r[i]); return o;
-  });
-
-  runWidget(latest, history);
+  const rows = csv.trim().split(/\\r?\\n/).map(r=>r.split(','));
+  const head = rows.shift();
+  const hist = rows.map(r=>{const o={};head.forEach((h,i)=>o[h]=i?+r[i]:r[i]);return o});
+  runWidget(latest,hist);
 })();
 
-function runWidget(latestData, histData) {
-  const regionSel=document.getElementById('regionSel');
-  const tfSel    =document.getElementById('tfSel');
-  const statsDiv =document.getElementById('stats');
+function runWidget(latestData,histData){
+  const rSel=document.getElementById('regionSel');
+  const tSel=document.getElementById('tfSel');
+  const stats=document.getElementById('stats');
 
-  const regions=[...new Set(latestData.components.map(c=>c.region)),"All"];
-  regionSel.innerHTML = regions.map(r=>`<option>${r}</option>`).join('');
-  regionSel.value="All";
+  const regions=[...new Set(latestData.components.map(c=>c.region)),'All'];
+  rSel.innerHTML=regions.map(r=>`<option>${r}</option>`).join('');rSel.value='All';
 
   const ctx=document.getElementById('chart');
-  const chart=new Chart(ctx,{
-    type:'line',
-    data:{labels:[],datasets:[{
-      data:[], tension:0.3, borderWidth:3, pointRadius:0,
-      borderColor:'#F5A623', fill:false
-    }]},
-    options:{
-      responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false},
-        tooltip:{backgroundColor:'#FFF',titleColor:'#111827',
-                 bodyColor:'#111827',borderColor:'#E5E7EB',borderWidth:1}},
-      scales:{
-        x:{ticks:{color:'#6B7280'}},
-        y:{ticks:{color:'#6B7280'}, beginAtZero:false}
-      }
-    }
+  const chart=new Chart(ctx,{type:'line',
+    data:{labels:[],datasets:[{data:[],tension:.3,borderWidth:3,pointRadius:0,borderColor:'#F5A623'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+      tooltip:{backgroundColor:'#FFF',titleColor:'#111827',bodyColor:'#111827',
+               borderColor:'#E5E7EB',borderWidth:1}},
+      scales:{x:{ticks:{color:'#6B7280'}},y:{ticks:{color:'#6B7280'},beginAtZero:false}}}
   });
 
-  const fmt=x=>Number(x).toLocaleString(undefined,{maximumFractionDigits:2});
+  const fmt=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
 
   function render(){
-    const region=regionSel.value, days=+tfSel.value;
-
-    // midnight-based cutoff
+    const region=rSel.value,days=+tSel.value;
     const now=new Date(latestData.last_updated);
-    const since=new Date(now); since.setUTCHours(0,0,0,0);
-    since.setDate(since.getDate()-days);
+    const since=new Date(now);since.setUTCHours(0,0,0,0);since.setDate(since.getDate()-days);
 
-    let slice = histData.filter(h =>
-      days>=9999 || new Date(h.timestamp)>=since);
+    let slice=histData.filter(h=>days>=9999||new Date(h.timestamp)>=since);
 
-    // duplicate if only one row so Chart.js draws a flat line
-    if (slice.length===1){
-      const dup={...slice[0]};
-      dup.timestamp=new Date().toISOString();
-      slice=[slice[0],dup];
+    /* ── ensure ≥2 finite points ── */
+    const finite= slice.map(h=>h[region]).filter(v=>Number.isFinite(v));
+    if (finite.length<2){
+      const pt={timestamp:latestData.last_updated,[region]:latestData.values[region]||0};
+      slice=[pt,{...pt}];
     }
 
-    chart.data.labels = slice.map(h=>h.timestamp.slice(0,10));
-    chart.data.datasets[0].data = slice.map(h=>h[region]);
+    chart.data.labels=slice.map(h=>h.timestamp.slice(0,10));
+    chart.data.datasets[0].data=slice.map(h=>h[region]);
 
-    // dynamic y-axis padding
-    const vals=chart.data.datasets[0].data.filter(v=>!isNaN(v));
-    const max=Math.max(...vals), min=Math.min(...vals);
-    chart.options.scales.y.suggestedMax = max*1.05;
-    chart.options.scales.y.suggestedMin = min*0.95;
-
+    const vals=chart.data.datasets[0].data.filter(Number.isFinite);
+    chart.options.scales.y.suggestedMax=Math.max(...vals)*1.05;
+    chart.options.scales.y.suggestedMin=Math.min(...vals)*0.95;
     chart.update();
 
-    const latestVal = latestData.values[region] ?? 0;
-    const prevVal   = slice.at(-2)?.[region] ?? latestVal;
-    const change    = latestVal-prevVal;
-    const pct       = prevVal?change/prevVal*100:0;
-    const tfLabel   ={1:'1-day',7:'1-week',30:'1-month',182:'6-month',365:'1-year',9999:'period'}[days]||'';
-
-    statsDiv.innerHTML=`
-      <div>
-        <p class="text-gray-500">Value</p>
-        <p class="font-medium">$${fmt(latestVal)}</p>
-      </div>
-      <div>
-        <p class="text-gray-500">Δ ${tfLabel}</p>
-        <p class="${change>=0?'text-green-600':'text-red-600'}">
-          ${change>=0?'+':''}${fmt(change)} (${pct.toFixed(2)}%)
-        </p>
-      </div>
-      <div>
-        <p class="text-gray-500">Updated</p>
-        <p>${new Date(latestData.last_updated).toLocaleString()}</p>
-      </div>`;
+    const latestVal=latestData.values[region]||0;
+    const prevVal=slice.at(-2)[region]||latestVal;
+    const chg=latestVal-prevVal,pct=prevVal?chg/prevVal*100:0;
+    const lbl={1:'1-day',7:'1-week',30:'1-month',182:'6-month',365:'1-year',9999:'period'}[days]||'';
+    stats.innerHTML=`
+      <div><p class="text-gray-500">Value</p><p class="font-medium">$${fmt(latestVal)}</p></div>
+      <div><p class="text-gray-500">Δ ${lbl}</p>
+           <p class="${chg>=0?'text-green-600':'text-red-600'}">
+             ${chg>=0?'+':''}${fmt(chg)} (${pct.toFixed(2)}%)
+           </p></div>
+      <div><p class="text-gray-500">Updated</p>
+           <p>${new Date(latestData.last_updated).toLocaleString()}</p></div>`;
   }
 
-  regionSel.addEventListener('change', render);
-  tfSel.addEventListener('change', render);
-  render();
+  rSel.addEventListener('change',render);tSel.addEventListener('change',render);render();
 }
 </script>
 </body>
