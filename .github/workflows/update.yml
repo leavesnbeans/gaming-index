@@ -24,7 +24,7 @@ jobs:
       - run: python build_index.py
 
       # Commit the generated files (latest.json, history.csv)
-      - run: |add hourly workflow
+      - run: |
           git config user.name  "github-actions"
           git config user.email "actions@github.com"
           git add latest.json history.csv
