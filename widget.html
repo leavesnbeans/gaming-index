@@ -1,115 +1,139 @@
+<!-- widget.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Gaming Index Widget</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-  :root{--navy:#15304B;--orange:#F5A623}
-  body{background:#F8F9FB;color:var(--navy)}
-  .card{background:#FFF;border:1px solid #E5EAF2;border-radius:1.5rem;box-shadow:0 4px 8px rgba(0,0,0,.04)}
-  .sel,.sel option{background:#FFF;color:var(--navy);font-size:.875rem}
-  .sel{border:1px solid var(--navy);border-radius:.75rem;padding:.25rem .75rem}
-</style>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaming Index Widget</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f7f8fa;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      max-width: 800px;
+      width: 100%;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    canvas {
+      width: 100% !important;
+      max-height: 300px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-6">
-
-<div class="card w-full max-w-2xl p-8">
-  <header class="flex flex-wrap gap-3 items-center justify-between mb-6">
-    <h1 class="text-2xl font-semibold tracking-wide">Gaming Index</h1>
-    <div class="flex gap-3">
-      <select id="regionSel" class="sel"></select>
-      <select id="tfSel" class="sel">
-        <option value="1">1D</option><option value="7">1W</option>
-        <option value="30">1M</option><option value="182">6M</option>
-        <option value="365" selected>1Y</option><option value="9999">MAX</option>
-      </select>
+<body>
+  <div class="card">
+    <div class="header">
+      <h2>Gaming Index</h2>
+      <div>
+        <select id="region">
+          <option>All</option>
+          <option>North America</option>
+          <option>Europe</option>
+          <option>Asia-Pacific</option>
+          <option>Other</option>
+        </select>
+        <select id="period">
+          <option value="7">1W</option>
+          <option value="30">1M</option>
+          <option value="90">3M</option>
+          <option value="180">6M</option>
+          <option value="365">1Y</option>
+          <option value="1825">5Y</option>
+        </select>
+      </div>
     </div>
-  </header>
+    <canvas id="indexChart"></canvas>
+    <div class="footer">
+      Powered by GitHub Pages &mdash; auto-updates hourly / daily.
+    </div>
+  </div>
 
-  <div id="stats" class="grid grid-cols-3 gap-6 text-center text-sm md:text-base mb-8"></div>
-  <div class="h-72 w-full"><canvas id="chart"></canvas></div>
-  <footer class="mt-6 text-xs text-gray-500 text-right">
-    Powered by GitHub Pages — auto-updates hourly / daily.
-  </footer>
-</div>
+  <script>
+    let chart;
 
-<script>
-/*  change once */
-const BASE_URL = "https://leavesnbeans.github.io/gaming-index";
+    async function fetchData() {
+      const region = document.getElementById("region").value;
+      const days = parseInt(document.getElementById("period").value);
 
-/* fetch data */
-(async()=>{
-  const [latest,csv]=await Promise.all([
-    fetch(`${BASE_URL}/latest.json`,{cache:'no-store'}).then(r=>r.json()),
-    fetch(`${BASE_URL}/history.csv`,{cache:'no-store'}).then(r=>r.text())
-  ]);
+      const res = await fetch("history.csv");
+      const text = await res.text();
+      const lines = text.trim().split("\n");
+      const headers = lines[0].split(",");
+      const regionIdx = headers.indexOf(region);
 
-  const rows = csv.trim().split(/\\r?\\n/).map(r=>r.split(','));
-  const head = rows.shift();
-  const hist = rows.map(r=>{const o={};head.forEach((h,i)=>o[h]=i?+r[i]:r[i]);return o});
-  runWidget(latest,hist);
-})();
+      const rows = lines.slice(1).map(line => line.split(","));
+      const data = rows.map(row => ({
+        date: row[0],
+        value: parseFloat(row[regionIdx])
+      })).filter(d => !isNaN(d.value));
 
-function runWidget(latestData,histData){
-  const rSel=document.getElementById('regionSel');
-  const tSel=document.getElementById('tfSel');
-  const stats=document.getElementById('stats');
+      const recent = data.slice(-days);
 
-  const regions=[...new Set(latestData.components.map(c=>c.region)),'All'];
-  rSel.innerHTML=regions.map(r=>`<option>${r}</option>`).join('');rSel.value='All';
-
-  const ctx=document.getElementById('chart');
-  const chart=new Chart(ctx,{type:'line',
-    data:{labels:[],datasets:[{data:[],tension:.3,borderWidth:3,pointRadius:0,borderColor:'#F5A623'}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
-      tooltip:{backgroundColor:'#FFF',titleColor:'#111827',bodyColor:'#111827',
-               borderColor:'#E5E7EB',borderWidth:1}},
-      scales:{x:{ticks:{color:'#6B7280'}},y:{ticks:{color:'#6B7280'},beginAtZero:false}}}
-  });
-
-  const fmt=n=>Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
-
-  function render(){
-    const region=rSel.value,days=+tSel.value;
-    const now=new Date(latestData.last_updated);
-    const since=new Date(now);since.setUTCHours(0,0,0,0);since.setDate(since.getDate()-days);
-
-    let slice=histData.filter(h=>days>=9999||new Date(h.timestamp)>=since);
-
-    /* ── ensure ≥2 finite points ── */
-    const finite= slice.map(h=>h[region]).filter(v=>Number.isFinite(v));
-    if (finite.length<2){
-      const pt={timestamp:latestData.last_updated,[region]:latestData.values[region]||0};
-      slice=[pt,{...pt}];
+      updateChart(
+        recent.map(d => d.date),
+        recent.map(d => d.value)
+      );
     }
 
-    chart.data.labels=slice.map(h=>h.timestamp.slice(0,10));
-    chart.data.datasets[0].data=slice.map(h=>h[region]);
+    function updateChart(labels, values) {
+      const ctx = document.getElementById("indexChart").getContext("2d");
+      if (chart) chart.destroy();
+      chart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Index Value",
+              data: values,
+              borderColor: "orange",
+              borderWidth: 2,
+              fill: false,
+              tension: 0.3
+            }
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              suggestedMin: Math.min(...values) * 0.98,
+              suggestedMax: Math.max(...values) * 1.02
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    }
 
-    const vals=chart.data.datasets[0].data.filter(Number.isFinite);
-    chart.options.scales.y.suggestedMax=Math.max(...vals)*1.05;
-    chart.options.scales.y.suggestedMin=Math.min(...vals)*0.95;
-    chart.update();
-
-    const latestVal=latestData.values[region]||0;
-    const prevVal=slice.at(-2)[region]||latestVal;
-    const chg=latestVal-prevVal,pct=prevVal?chg/prevVal*100:0;
-    const lbl={1:'1-day',7:'1-week',30:'1-month',182:'6-month',365:'1-year',9999:'period'}[days]||'';
-    stats.innerHTML=`
-      <div><p class="text-gray-500">Value</p><p class="font-medium">$${fmt(latestVal)}</p></div>
-      <div><p class="text-gray-500">Δ ${lbl}</p>
-           <p class="${chg>=0?'text-green-600':'text-red-600'}">
-             ${chg>=0?'+':''}${fmt(chg)} (${pct.toFixed(2)}%)
-           </p></div>
-      <div><p class="text-gray-500">Updated</p>
-           <p>${new Date(latestData.last_updated).toLocaleString()}</p></div>`;
-  }
-
-  rSel.addEventListener('change',render);tSel.addEventListener('change',render);render();
-}
-</script>
+    document.getElementById("region").addEventListener("change", fetchData);
+    document.getElementById("period").addEventListener("change", fetchData);
+    fetchData();
+  </script>
 </body>
 </html>
