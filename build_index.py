@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
 """
-Gaming Index builder  –  yfinance + Stooq fallback
-• Tries yfinance first (1-min intraday, ~15-min delay)
-• For any missing/NaN price, fetches last close from Stooq CSV
+Gaming Index builder  –  yfinance + Stooq fallback (fixed)
+• Reads gaming_universe_fixed.xlsx
+• Coerces Symbol to str, drops blanks
+• Tries yfinance first; if NaN, fetches last close from Stooq CSV
 • Writes latest.json  +  history.csv
 """
-
-import json, csv, os, re, pandas as pd, yfinance as yf
+import json, csv, os, re
 from datetime import datetime, timezone
 
-SRC_XLSX  = "gaming_universe_fixed.xlsx"   # your sheet name
+import pandas as pd
+import yfinance as yf
+
+# ─── Config ───────────────────────────────────────────────────────────
+SRC_XLSX  = "gaming_universe_fixed.xlsx"   # adjust if you renamed it
 SNAPSHOT  = "latest.json"
 HISTORY   = "history.csv"
-PR_PERIOD = "1d"
-PR_STEP   = "1m"
+PR_PERIOD = "1d"    # today
+PR_STEP   = "1m"    # 1-minute bars
 
-# ─── load universe ──────────────────────────────────────────
+# ─── Load & scrub the universe sheet ──────────────────────────────────
 u = (
     pd.read_excel(SRC_XLSX)
       .dropna(subset=["Symbol"])
@@ -35,19 +39,18 @@ if "Weight" not in u.columns:
 
 tickers = u["Symbol"].tolist()
 
-# ─── fetch prices from Yahoo first ─────────────────────────
+# ─── Fetch prices via yfinance ────────────────────────────────────────
 prices = yf.download(tickers, period=PR_PERIOD, interval=PR_STEP)["Adj Close"].iloc[-1]
 
-# ─── helper: Stooq fallback ────────────────────────────────
+# ─── Stooq fallback helper ────────────────────────────────────────────
 def stooq_price(sym: str) -> float | None:
     """
-    Map Yahoo-style symbol to Stooq code and return last close.
+    Map a Yahoo-style symbol to Stooq code and return last close.
     """
-    # split "6460.T" → base 6460, suf T
     m = re.match(r"([^.]+)(?:\\.(\\w+))?", sym)
-    if not m: return None
+    if not m:
+        return None
     base, suf = m.group(1), m.group(2)
-
     stooq_code = {
         None:  f"{base}.us",
         "AX":  f"{base}.au",
@@ -60,58 +63,60 @@ def stooq_price(sym: str) -> float | None:
         "MI":  f"{base}.it",
         "AS":  f"{base}.nl",
     }.get(suf, None)
-
     if not stooq_code:
         return None
-
     url = f"https://stooq.com/q/l/?s={stooq_code}&i=d"
     try:
-        return float(pd.read_csv(url).iloc[0, 1])
+        df = pd.read_csv(url)
+        return float(df.loc[0, "Close"])          # <- use Close column
     except Exception:
         return None
 
-# ─── build component list ─────────────────────────────────
+# ─── Build component list ─────────────────────────────────────────────
 components, skipped = [], []
 for _, row in u.iterrows():
     sym, reg, w = row["Symbol"], row["Region"], row["Weight"]
     px = prices.get(sym)
-
     if pd.isna(px):
-        px = stooq_price(sym)  # try Stooq
-
+        px = stooq_price(sym)
     if px and not pd.isna(px):
-        components.append({"symbol": sym,
-                           "price":  float(px),
-                           "weight": float(w),
-                           "region": reg})
+        components.append({
+            "symbol": sym,
+            "price":  float(px),
+            "weight": float(w),
+            "region": reg
+        })
     else:
         skipped.append(sym)
 
 if skipped:
     print(f"⚠️  Skipped {len(skipped)} symbols after Stooq fallback:", ', '.join(skipped))
 
-# ─── aggregate by region ──────────────────────────────────
+# ─── Aggregate by region ──────────────────────────────────────────────
 def region_val(region: str) -> float:
     subset = components if region == "All" else [c for c in components if c["region"] == region]
     return sum(c["price"] * c["weight"] for c in subset)
 
 now_iso = datetime.now(timezone.utc).isoformat()
-values  = {r: region_val(r) for r in ["All","North America","Europe","Asia-Pacific","Other"]}
+values   = {r: region_val(r) for r in ["All","North America","Europe","Asia-Pacific","Other"]}
 
-# ─── write latest.json ─────────────────────────────────────
+# ─── Write latest.json ────────────────────────────────────────────────
 with open(SNAPSHOT, "w") as f:
-    json.dump({"last_updated": now_iso,
-               "components":  components,
-               "values":      values}, f, indent=2)
+    json.dump({
+        "last_updated": now_iso,
+        "components" : components,
+        "values"     : values
+    }, f, indent=2)
 
-# ─── append history.csv ───────────────────────────────────
+# ─── Append history.csv ───────────────────────────────────────────────
 row    = [now_iso] + [values[k] for k in ["All","North America","Europe","Asia-Pacific","Other"]]
 header = ["timestamp","All","North America","Europe","Asia-Pacific","Other"]
-new    = not os.path.exists(HISTORY)
+new_file = not os.path.exists(HISTORY)
 
 with open(HISTORY, "a", newline="") as f:
     w = csv.writer(f)
-    if new: w.writerow(header)
+    if new_file:
+        w.writerow(header)
     w.writerow(row)
 
 print("✓ Index updated", now_iso)
