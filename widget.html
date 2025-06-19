@@ -2,70 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Gaming Index Widget</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gaming Index</title>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background: #f8f9fb;
       margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .card {
-      max-width: 800px;
-      margin: 50px auto;
-      background: white;
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+      background: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      max-width: 900px;
+      width: 100%;
     }
     .header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
+      align-items: flex-end;
+      flex-wrap: wrap;
     }
-    .header h2 {
-      margin: 0;
-      font-size: 1.5em;
-      color: #042a45;
+    .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #10375c;
+    }
+    .filters {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .filters select {
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
     .stats {
       display: flex;
-      gap: 40px;
-      margin: 12px 0;
+      justify-content: space-between;
+      margin-top: 1rem;
+      font-size: 1rem;
     }
     .stats div {
-      font-size: 14px;
-      color: #555;
-    }
-    .stats strong {
-      display: block;
-      font-size: 18px;
-      color: black;
-    }
-    .controls {
-      display: flex;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    select {
-      padding: 6px 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    footer {
+      flex: 1;
       text-align: center;
-      margin-top: 12px;
-      font-size: 13px;
-      color: #999;
+    }
+    .stats .value {
+      font-weight: bold;
+      font-size: 1.25rem;
+      color: #10375c;
+    }
+    .stats .delta {
+      color: green;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #888;
     }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="header">
-      <h2>Gaming Index</h2>
-      <div class="controls">
+      <div class="title">Gaming Index</div>
+      <div class="filters">
         <select id="region">
           <option>All</option>
           <option>North America</option>
@@ -74,7 +83,8 @@
           <option>Other</option>
         </select>
         <select id="range">
-          <option value="7D">7D</option>
+          <option value="1D">1D</option>
+          <option value="1W">1W</option>
           <option value="1M">1M</option>
           <option value="3M">3M</option>
           <option value="6M">6M</option>
@@ -86,78 +96,140 @@
 
     <div class="stats">
       <div>
-        Value <strong id="value">$0.00</strong>
+        <div>Value</div>
+        <div class="value" id="value">$–</div>
       </div>
       <div>
-        Δ <span id="period">—</span> <strong id="delta">+0 (0%)</strong>
+        <div>Δ <span id="rangeLabel">5-year</span></div>
+        <div class="delta" id="delta">+0 (0.00%)</div>
       </div>
       <div>
-        Updated <strong id="updated">—</strong>
+        <div>Updated</div>
+        <div id="updated">–</div>
       </div>
     </div>
 
     <div id="chart" style="height: 400px;"></div>
-    <footer>Powered by GitHub Pages — auto-updates hourly / daily.</footer>
+    <div class="footer">Powered by GitHub Pages — auto-updates hourly / daily.</div>
   </div>
 
   <script>
-    const REGIONS = ["All", "North America", "Europe", "Asia-Pacific", "Other"];
-    const RANGE_MAP = {
-      "7D": 7, "1M": 30, "3M": 90, "6M": 180, "1Y": 365, "5Y": 1825
+    const rangeMap = {
+      "1D": 1, "1W": 7, "1M": 30, "3M": 90,
+      "6M": 180, "1Y": 365, "5Y": 365 * 5
     };
 
-    async function load() {
-      const hist = await fetch("history.csv").then(r => r.text());
-      const lines = hist.trim().split("\n").map(r => r.split(","));
-      const headers = lines[0];
-      const data = lines.slice(1).map(r => {
-        let obj = {};
-        headers.forEach((h, i) => obj[h] = h === "timestamp" ? new Date(r[i]) : parseFloat(r[i]));
-        return obj;
-      });
-      return data;
+    const $ = id => document.getElementById(id);
+    let history = [], latest = {};
+
+    async function loadData() {
+      const [h, l] = await Promise.all([
+        fetch("history.csv").then(r => r.text()),
+        fetch("latest.json").then(r => r.json())
+      ]);
+      latest = l;
+      history = parseCSV(h);
+      update();
     }
 
-    function draw(region, range, raw) {
-      const days = RANGE_MAP[range];
+    function parseCSV(text) {
+      const lines = text.trim().split("\n");
+      const [_, ...rows] = lines;
+      return rows.map(line => {
+        const [timestamp, all, na, eu, ap, other] = line.split(",");
+        return {
+          date: new Date(timestamp),
+          "All": +all,
+          "North America": +na,
+          "Europe": +eu,
+          "Asia-Pacific": +ap,
+          "Other": +other
+        };
+      });
+    }
+
+    function update() {
+      const region = $("region").value;
+      const range = $("range").value;
+      const label = range === "1D" ? "1-day" :
+                    range === "1W" ? "1-week" :
+                    range === "1M" ? "1-month" :
+                    range === "3M" ? "3-month" :
+                    range === "6M" ? "6-month" :
+                    range === "1Y" ? "1-year" : "5-year";
+
+      $("rangeLabel").textContent = label;
+      $("updated").textContent = latest.last_updated.split("T")[0] + ", " + latest.last_updated.split("T")[1].slice(0,8);
+
+      const days = rangeMap[range];
       const now = new Date();
-      const recent = raw.filter(r => now - r.timestamp <= days * 864e5);
-      const x = recent.map(r => r.timestamp);
-      const y = recent.map(r => r[region]);
+      const cutoff = new Date(now);
+      if (range === "1D") {
+        // for 1D, use hourly granularity if supported
+        plotHourly(region);
+        return;
+      } else {
+        cutoff.setDate(cutoff.getDate() - days);
+      }
 
-      // Delta calc
-      const delta = y.length > 1 ? y[y.length - 1] - y[0] : 0;
-      const pct = delta && y[0] ? ((delta / y[0]) * 100).toFixed(2) : "0.00";
+      const filtered = history.filter(r => r.date >= cutoff);
+      const x = filtered.map(r => r.date.toISOString().split("T")[0]);
+      const y = filtered.map(r => r[region]);
 
-      document.getElementById("value").textContent = `$${y.at(-1).toFixed(2)}`;
-      document.getElementById("delta").textContent = `${delta >= 0 ? "+" : ""}${delta.toFixed(2)} (${pct}%)`;
-      document.getElementById("delta").style.color = delta >= 0 ? "green" : "red";
-      document.getElementById("updated").textContent = new Date().toISOString().split("T")[0];
-      document.getElementById("period").textContent = range.replace("Y", "-year").replace("M", "-month").replace("D", "-day");
+      const current = y[y.length - 1];
+      const prev = y[0];
+      const delta = current - prev;
+      const pct = (delta / prev) * 100;
+
+      $("value").textContent = "$" + current.toFixed(2);
+      $("delta").textContent = `${delta >= 0 ? "+" : ""}${delta.toFixed(2)} (${pct.toFixed(2)}%)`;
+      $("delta").style.color = delta >= 0 ? "green" : "red";
 
       Plotly.newPlot("chart", [{
         x, y,
-        mode: 'lines',
-        line: { color: "#f7931a", width: 3 },
-        hovertemplate: "%{x}<br><b>$%{y:.2f}</b><extra></extra>"
+        mode: "lines+markers",
+        line: { shape: "spline", color: "#FFA500", width: 2 },
+        marker: { size: 5, color: "#FFA500" }
       }], {
-        margin: { t: 10, b: 40, r: 20, l: 40 },
-        xaxis: { showgrid: true },
-        yaxis: { showgrid: true },
+        margin: { t: 10, b: 60, l: 50, r: 20 },
+        xaxis: { title: "", showgrid: true, showline: true },
+        yaxis: { title: "", showgrid: true, zeroline: false },
         showlegend: false,
-        height: 400
+        responsive: true,
+        transition: { duration: 400, easing: "cubic-in-out" }
       }, { displayModeBar: false });
     }
 
-    (async () => {
-      const raw = await load();
-      const regionSel = document.getElementById("region");
-      const rangeSel = document.getElementById("range");
-      const refresh = () => draw(regionSel.value, rangeSel.value, raw);
-      regionSel.onchange = refresh;
-      rangeSel.onchange = refresh;
-      refresh();
-    })();
+    function plotHourly(region) {
+      // Just show last 24 entries
+      const hourly = history.slice(-24);
+      const x = hourly.map(r => r.date.toISOString().slice(11,16));
+      const y = hourly.map(r => r[region]);
+      const current = y[y.length - 1];
+      const prev = y[0];
+      const delta = current - prev;
+      const pct = (delta / prev) * 100;
+
+      $("value").textContent = "$" + current.toFixed(2);
+      $("delta").textContent = `${delta >= 0 ? "+" : ""}${delta.toFixed(2)} (${pct.toFixed(2)}%)`;
+      $("delta").style.color = delta >= 0 ? "green" : "red";
+
+      Plotly.newPlot("chart", [{
+        x, y,
+        mode: "lines+markers",
+        line: { shape: "spline", color: "#FFA500", width: 2 },
+        marker: { size: 4, color: "#FFA500" }
+      }], {
+        margin: { t: 10, b: 50, l: 50, r: 20 },
+        xaxis: { title: "Hour", showgrid: true },
+        yaxis: { title: "", showgrid: true },
+        showlegend: false
+      }, { displayModeBar: false });
+    }
+
+    $("region").onchange = update;
+    $("range").onchange = update;
+    loadData();
   </script>
 </body>
 </html>
