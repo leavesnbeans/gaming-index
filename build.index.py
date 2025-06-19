@@ -73,4 +73,3 @@ with open(HIST_CSV, "a", newline="") as f:
 
 print("✓ Index updated", now_iso)
 
-“add builder”
