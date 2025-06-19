@@ -1,34 +1,25 @@
 #!/usr/bin/env python3
 """
-Gaming Index builder  –  v2025-06-19
+Gaming Index builder  –  resilient to missing tickers
 • Reads gaming_universe_prepared.xlsx
-• Ensures all symbols are strings (avoids int→ISIN error)
-• Pulls delayed prices via yfinance
-• Saves snapshot  → latest.json
-• Appends a row   → history.csv
+• Coerces Symbol to str, drops blanks
+• Fetches prices via yfinance
+• Skips any ticker that returns no price
+• Writes latest.json and history.csv
 """
 import json, csv, os, yfinance as yf, pandas as pd
 from datetime import datetime, timezone
 
-# ─── filenames ───────────────────────────────────────────────
-SRC_XLSX   = "gaming_universe_prepared.xlsx"   # adjust if you renamed it
-SNAP_JSON  = "latest.json"
-HIST_CSV   = "history.csv"
+SRC_XLSX  = "gaming_universe_prepared.xlsx"
+SNAPSHOT  = "latest.json"
+HISTORY   = "history.csv"
+PR_PERIOD = "1d"
+PR_STEP   = "1m"
 
-# ─── yfinance look-back ──────────────────────────────────────
-PR_PERIOD  = "1d"   # today
-PR_STEP    = "1m"   # 1-minute bars (~15-min delayed)
-
-# ─── load & scrub universe ──────────────────────────────────
-u = pd.read_excel(SRC_XLSX)
-
-# drop completely blank symbol cells
-u = u.dropna(subset=["Symbol"])
-
-# coerce every symbol to a trimmed string
+# ── load & scrub universe ──────────────────────────────────
+u = pd.read_excel(SRC_XLSX).dropna(subset=["Symbol"])
 u["Symbol"] = u["Symbol"].astype(str).str.strip()
 
-# add Region if missing
 if "Region" not in u.columns:
     REGION_MAP = {
         "NYSE":"North America","NASDAQ":"North America","OTCMKTS":"North America","TSE":"North America",
@@ -37,27 +28,25 @@ if "Region" not in u.columns:
     }
     u["Region"] = u["Market"].map(REGION_MAP).fillna("Other")
 
-# add equal Weight if missing
 if "Weight" not in u.columns:
     u["Weight"] = 1 / len(u)
 
 tickers = u["Symbol"].tolist()
 
-# ─── fetch prices ────────────────────────────────────────────
-prices = yf.download(tickers,
-                     period   = PR_PERIOD,
-                     interval = PR_STEP)["Adj Close"].iloc[-1]
+# ── fetch prices ───────────────────────────────────────────
+prices = yf.download(tickers, period=PR_PERIOD, interval=PR_STEP)["Adj Close"].iloc[-1]
 
-# ─── build component list ────────────────────────────────────
-components = []
+# ── build component list (skip NaNs) ───────────────────────
+components, skipped = [], []
 for _, row in u.iterrows():
     sym, reg, w = row["Symbol"], row["Region"], row["Weight"]
-    components.append({
-        "symbol": sym,
-        "price" : float(prices[sym]),
-        "weight": float(w),
-        "region": reg
-    })
+    if sym in prices and pd.notna(prices[sym]):
+        components.append({"symbol":sym,"price":float(prices[sym]),"weight":float(w),"region":reg})
+    else:
+        skipped.append(sym)
+
+if skipped:
+    print(f"⚠️  Skipped {len(skipped)} symbols with no price:", ", ".join(skipped))
 
 # helper to sum by region
 def region_val(region:str) -> float:
@@ -67,23 +56,17 @@ def region_val(region:str) -> float:
 now_iso = datetime.now(timezone.utc).isoformat()
 values  = {r: region_val(r) for r in ["All","North America","Europe","Asia-Pacific","Other"]}
 
-# ─── write latest.json ───────────────────────────────────────
-with open(SNAP_JSON, "w") as f:
-    json.dump({
-        "last_updated": now_iso,
-        "components"  : components,
-        "values"      : values
-    }, f, indent=2)
+# ── write latest.json ──────────────────────────────────────
+with open(SNAPSHOT, "w") as f:
+    json.dump({"last_updated":now_iso,"components":components,"values":values}, f, indent=2)
 
-# ─── append history.csv ─────────────────────────────────────
+# ── append history.csv ─────────────────────────────────────
 row    = [now_iso] + [values[k] for k in ["All","North America","Europe","Asia-Pacific","Other"]]
 header = ["timestamp","All","North America","Europe","Asia-Pacific","Other"]
-is_new = not os.path.exists(HIST_CSV)
-
-with open(HIST_CSV, "a", newline="") as f:
+is_new = not os.path.exists(HISTORY)
+with open(HISTORY, "a", newline="") as f:
     w = csv.writer(f)
-    if is_new:
-        w.writerow(header)
+    if is_new: w.writerow(header)
     w.writerow(row)
 
 print("✓ Index updated", now_iso)
