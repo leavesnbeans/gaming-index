@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """
+u = pd.read_excel(SRC_XLSX)
+
+# ⬇︎ add these two lines
+u["Symbol"] = u["Symbol"].astype(str).str.strip()           # make everything a string
+u = u[u["Symbol"].str.lower() != "nan"]                     # drop any blank rows
+
 Gaming Index builder
 • Reads the Excel universe (Symbol, Market, Region, Weight)
 • Pulls delayed prices via yfinance
