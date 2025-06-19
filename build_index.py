@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Gaming Index builder  –  resilient to missing tickers
-• Reads gaming_universe_prepared.xlsx
+• Reads gaming_universe_fixed.xlsx
 • Coerces Symbol to str, drops blanks
 • Fetches prices via yfinance
 • Skips any ticker that returns no price
@@ -10,7 +10,7 @@ Gaming Index builder  –  resilient to missing tickers
 import json, csv, os, yfinance as yf, pandas as pd
 from datetime import datetime, timezone
 
-SRC_XLSX  = "gaming_universe_prepared.xlsx"
+SRC_XLSX  = "gaming_universe_fixed.xlsx"
 SNAPSHOT  = "latest.json"
 HISTORY   = "history.csv"
 PR_PERIOD = "1d"
