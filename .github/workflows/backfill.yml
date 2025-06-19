@@ -1,15 +1,39 @@
+name: backfill history (one-time)
+
+on:
+  workflow_dispatch:        # shows a “Run workflow” button in Actions tab
+
+permissions:
+  contents: write           # allow this job to push to the repo
+
 jobs:
   run:
     runs-on: ubuntu-latest
+
     steps:
+      # 1. Check out the repository
       - uses: actions/checkout@v4
+
+      # 2. Set up Python
       - uses: actions/setup-python@v5
-        with: { python-version: '3.11' }
-      - run: pip install pandas yfinance requests openpyxl   # ← add openpyxl
-      - run: python backfill_history.py
-      - run: |
+        with:
+          python-version: '3.11'
+
+      # 3. Install dependencies
+      - name: Install Python libs
+        run: |
+          pip install --upgrade pip
+          pip install pandas yfinance requests openpyxl
+
+      # 4. Run the back-fill script
+      - name: Build full history.csv
+        run: python backfill_history.py
+
+      # 5. Commit the generated file
+      - name: Commit updated history.csv
+        run: |
           git config user.name  "github-actions"
           git config user.email "actions@github.com"
           git add history.csv
-          git commit -m "backfill history" || echo "no changes"
+          git commit -m "backfill history" || echo "nothing to commit"
           git push
