@@ -1,0 +1,43 @@
+name: refresh gaming index                      # shows in the Actions list
+
+# ─── When this workflow runs ─────────────────────────────────────────
+on:
+  schedule:
+    - cron:  '5 0 * * *'                        # 00:05 UTC every day
+  workflow_dispatch:                            # manual “Run workflow” button
+
+# ─── Allow push from the default GITHUB_TOKEN ────────────────────────
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out repository
+      - uses: actions/checkout@v4
+
+      # 2. Set up Python
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3. Install dependencies
+      - name: Install libraries
+        run: |
+          pip install --upgrade pip
+          pip install pandas yfinance requests openpyxl
+
+      # 4. Run builder script
+      - name: Build latest snapshot & append history
+        run: python build_index.py
+
+      # 5. Commit generated files
+      - name: Commit and push
+        run: |
+          git config user.name  "github-actions"
+          git config user.email "actions@github.com"
+          git add latest.json history.csv
+          git commit -m "auto: daily refresh" || echo "nothing to commit"
+          git push
