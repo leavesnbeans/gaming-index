@@ -1,44 +1,63 @@
-<!-- widget.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gaming Index Widget</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <style>
     body {
       font-family: sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: #f7f8fa;
+      background: #f8f9fb;
       margin: 0;
     }
     .card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
       max-width: 800px;
-      width: 100%;
+      margin: 50px auto;
+      background: white;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.05);
     }
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1rem;
+      margin-bottom: 16px;
     }
-    canvas {
-      width: 100% !important;
-      max-height: 300px;
+    .header h2 {
+      margin: 0;
+      font-size: 1.5em;
+      color: #042a45;
     }
-    .footer {
+    .stats {
+      display: flex;
+      gap: 40px;
+      margin: 12px 0;
+    }
+    .stats div {
+      font-size: 14px;
+      color: #555;
+    }
+    .stats strong {
+      display: block;
+      font-size: 18px;
+      color: black;
+    }
+    .controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    select {
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    footer {
       text-align: center;
-      font-size: 0.8rem;
-      color: #888;
-      margin-top: 1rem;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #999;
     }
   </style>
 </head>
@@ -46,7 +65,7 @@
   <div class="card">
     <div class="header">
       <h2>Gaming Index</h2>
-      <div>
+      <div class="controls">
         <select id="region">
           <option>All</option>
           <option>North America</option>
@@ -54,86 +73,91 @@
           <option>Asia-Pacific</option>
           <option>Other</option>
         </select>
-        <select id="period">
-          <option value="7">1W</option>
-          <option value="30">1M</option>
-          <option value="90">3M</option>
-          <option value="180">6M</option>
-          <option value="365">1Y</option>
-          <option value="1825">5Y</option>
+        <select id="range">
+          <option value="7D">7D</option>
+          <option value="1M">1M</option>
+          <option value="3M">3M</option>
+          <option value="6M">6M</option>
+          <option value="1Y">1Y</option>
+          <option value="5Y" selected>5Y</option>
         </select>
       </div>
     </div>
-    <canvas id="indexChart"></canvas>
-    <div class="footer">
-      Powered by GitHub Pages &mdash; auto-updates hourly / daily.
+
+    <div class="stats">
+      <div>
+        Value <strong id="value">$0.00</strong>
+      </div>
+      <div>
+        Δ <span id="period">—</span> <strong id="delta">+0 (0%)</strong>
+      </div>
+      <div>
+        Updated <strong id="updated">—</strong>
+      </div>
     </div>
+
+    <div id="chart" style="height: 400px;"></div>
+    <footer>Powered by GitHub Pages — auto-updates hourly / daily.</footer>
   </div>
 
   <script>
-    let chart;
+    const REGIONS = ["All", "North America", "Europe", "Asia-Pacific", "Other"];
+    const RANGE_MAP = {
+      "7D": 7, "1M": 30, "3M": 90, "6M": 180, "1Y": 365, "5Y": 1825
+    };
 
-    async function fetchData() {
-      const region = document.getElementById("region").value;
-      const days = parseInt(document.getElementById("period").value);
-
-      const res = await fetch("history.csv");
-      const text = await res.text();
-      const lines = text.trim().split("\n");
-      const headers = lines[0].split(",");
-      const regionIdx = headers.indexOf(region);
-
-      const rows = lines.slice(1).map(line => line.split(","));
-      const data = rows.map(row => ({
-        date: row[0],
-        value: parseFloat(row[regionIdx])
-      })).filter(d => !isNaN(d.value));
-
-      const recent = data.slice(-days);
-
-      updateChart(
-        recent.map(d => d.date),
-        recent.map(d => d.value)
-      );
-    }
-
-    function updateChart(labels, values) {
-      const ctx = document.getElementById("indexChart").getContext("2d");
-      if (chart) chart.destroy();
-      chart = new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Index Value",
-              data: values,
-              borderColor: "orange",
-              borderWidth: 2,
-              fill: false,
-              tension: 0.3
-            }
-          ]
-        },
-        options: {
-          scales: {
-            y: {
-              suggestedMin: Math.min(...values) * 0.98,
-              suggestedMax: Math.max(...values) * 1.02
-            }
-          },
-          plugins: {
-            legend: {
-              display: false
-            }
-          }
-        }
+    async function load() {
+      const hist = await fetch("history.csv").then(r => r.text());
+      const lines = hist.trim().split("\n").map(r => r.split(","));
+      const headers = lines[0];
+      const data = lines.slice(1).map(r => {
+        let obj = {};
+        headers.forEach((h, i) => obj[h] = h === "timestamp" ? new Date(r[i]) : parseFloat(r[i]));
+        return obj;
       });
+      return data;
     }
 
-    document.getElementById("region").addEventListener("change", fetchData);
-    document.getElementById("period").addEventListener("change", fetchData);
-    fetchData();
+    function draw(region, range, raw) {
+      const days = RANGE_MAP[range];
+      const now = new Date();
+      const recent = raw.filter(r => now - r.timestamp <= days * 864e5);
+      const x = recent.map(r => r.timestamp);
+      const y = recent.map(r => r[region]);
+
+      // Delta calc
+      const delta = y.length > 1 ? y[y.length - 1] - y[0] : 0;
+      const pct = delta && y[0] ? ((delta / y[0]) * 100).toFixed(2) : "0.00";
+
+      document.getElementById("value").textContent = `$${y.at(-1).toFixed(2)}`;
+      document.getElementById("delta").textContent = `${delta >= 0 ? "+" : ""}${delta.toFixed(2)} (${pct}%)`;
+      document.getElementById("delta").style.color = delta >= 0 ? "green" : "red";
+      document.getElementById("updated").textContent = new Date().toISOString().split("T")[0];
+      document.getElementById("period").textContent = range.replace("Y", "-year").replace("M", "-month").replace("D", "-day");
+
+      Plotly.newPlot("chart", [{
+        x, y,
+        mode: 'lines',
+        line: { color: "#f7931a", width: 3 },
+        hovertemplate: "%{x}<br><b>$%{y:.2f}</b><extra></extra>"
+      }], {
+        margin: { t: 10, b: 40, r: 20, l: 40 },
+        xaxis: { showgrid: true },
+        yaxis: { showgrid: true },
+        showlegend: false,
+        height: 400
+      }, { displayModeBar: false });
+    }
+
+    (async () => {
+      const raw = await load();
+      const regionSel = document.getElementById("region");
+      const rangeSel = document.getElementById("range");
+      const refresh = () => draw(regionSel.value, rangeSel.value, raw);
+      regionSel.onchange = refresh;
+      rangeSel.onchange = refresh;
+      refresh();
+    })();
   </script>
 </body>
 </html>
