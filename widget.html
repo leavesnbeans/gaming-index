@@ -1,31 +1,153 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>Gaming Index Tracker</title><script src="https://cdn.tailwindcss.com"></script><style>:root{--gi-navy:#15304B;--gi-orange:#F5A623}body{background:#F8F9FB;color:var(--gi-navy)}.gi-card{background:#FFF;border:1px solid #E5EAF2;border-radius:1.5rem;box-shadow:0 4px 8px rgba(0,0,0,.04)}.gi-select,.gi-select option{background:#FFF;color:var(--gi-navy);font-size:.875rem}.gi-select{border:1px solid var(--gi-navy);border-radius:.75rem;padding:.25rem .75rem}</style><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script></head><body class="min-h-screen flex items-center justify-center p-6"><div class="gi-card w-full max-w-2xl p-8"><header class="flex flex-wrap gap-3 items-center justify-between mb-6"><h1 class="text-2xl font-semibold tracking-wide">Gaming Index</h1><div class="flex gap-3"><select id="regionSel" class="gi-select"></select><select id="tfSel" class="gi-select"><option value="1">1D</option><option value="7">1W</option><option value="30">1M</option><option value="182">6M</option><option value="365" selected>1Y</option><option value="9999">MAX</option></select></div></header><div id="stats" class="grid grid-cols-3 gap-6 text-center text-sm md:text-base mb-8"></div><div class="h-72 w-full"><canvas id="chart"></canvas></div><footer class="mt-6 text-xs text-gray-500 text-right">Powered by GitHub Pages — auto-updates hourly/daily.</footer></div><script>
-const BASE_URL="https://leavesnbeans.github.io/gaming-index"; // ← change once
-(async()=>{
- const latest=await fetch(`${BASE_URL}/latest.json`,{cache:'no-store'}).then(r=>r.json());
- const csvText=await fetch(`${BASE_URL}/history.csv`,{cache:'no-store'}).then(r=>r.text());
- const rows=csvText.trim().split(/\\r?\\n/).map(r=>r.split(',')),header=rows.shift();
- const history=rows.map(r=>{const o={};header.forEach((h,i)=>o[h]=i?+r[i]:r[i]);return o});
- runWidget(latest,history);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Gaming Index Widget</title>
+
+  <!-- Tailwind (single-file CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --gi-navy:#15304B; --gi-orange:#F5A623 }
+    body   { background:#F8F9FB; color:var(--gi-navy) }
+    .gi-card { background:#FFF; border:1px solid #E5EAF2;
+               border-radius:1.5rem; box-shadow:0 4px 8px rgba(0,0,0,.04) }
+    .gi-select,.gi-select option { background:#FFF; color:var(--gi-navy); font-size:.875rem }
+    .gi-select { border:1px solid var(--gi-navy); border-radius:.75rem; padding:.25rem .75rem }
+  </style>
+
+  <!-- Chart.js v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+
+  <!-- ── Widget container ─────────────────────────────────────────── -->
+  <div class="gi-card w-full max-w-2xl p-8">
+    <header class="flex flex-wrap gap-3 items-center justify-between mb-6">
+      <h1 class="text-2xl font-semibold tracking-wide">Gaming Index</h1>
+      <div class="flex gap-3">
+        <select id="regionSel" class="gi-select"></select>
+        <select id="tfSel" class="gi-select">
+          <option value="1">1D</option>
+          <option value="7">1W</option>
+          <option value="30">1M</option>
+          <option value="182">6M</option>
+          <option value="365" selected>1Y</option>
+          <option value="9999">MAX</option>
+        </select>
+      </div>
+    </header>
+
+    <div id="stats" class="grid grid-cols-3 gap-6 text-center text-sm md:text-base mb-8"></div>
+    <div class="h-72 w-full"><canvas id="chart"></canvas></div>
+    <footer class="mt-6 text-xs text-gray-500 text-right">
+      Powered by GitHub Pages — auto-updates hourly / daily.
+    </footer>
+  </div>
+
+<script>
+/* 1)  >>>>>>>>>>>>>>>>>>>>>>>>>>  EDIT THIS ONCE  <<<<<<<<<<<<<<<<<<<<<<<< */
+const BASE_URL = "https://YOUR-USERNAME.github.io/gaming-index";
+/* ^^^ replace YOUR-USERNAME with your GitHub username                     */
+
+/* 2)  Fetch latest snapshot & full history CSV ------------------------- */
+(async () => {
+  const [latest, csvText] = await Promise.all([
+    fetch(`${BASE_URL}/latest.json`, {cache:'no-store'}).then(r => r.json()),
+    fetch(`${BASE_URL}/history.csv`, {cache:'no-store'}).then(r => r.text())
+  ]);
+
+  const rows   = csvText.trim().split(/\\r?\\n/).map(r => r.split(','));
+  const header = rows.shift();
+  const history = rows.map(r => {
+    const o = {};
+    header.forEach((h,i)=> o[h] = i ? +r[i] : r[i]);
+    return o;
+  });
+
+  runWidget(latest, history);
 })();
-function runWidget(latestData,histData){
- const regionSel=document.getElementById('regionSel'),tfSel=document.getElementById('tfSel'),statsDiv=document.getElementById('stats');
- const regions=[...new Set(latestData.components.map(c=>c.region)),"All"];
- regionSel.innerHTML=regions.map(r=>`<option>${r}</option>`).join('');regionSel.value="All";
- const ctx=document.getElementById('chart');
- const chart=new Chart(ctx,{type:'line',data:{labels:[],datasets:[{data:[],tension:0.3,borderWidth:3,pointRadius:0,borderColor:'#F5A623'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#FFF',titleColor:'#111827',bodyColor:'#111827',borderColor:'#E5E7EB',borderWidth:1}},scales:{x:{ticks:{color:'#6B7280'}},y:{ticks:{color:'#6B7280'}}}}});
- const fmt=x=>Number(x).toLocaleString(undefined,{maximumFractionDigits:2});
- function render(){
-  const region=regionSel.value,days=+tfSel.value,now=new Date(latestData.last_updated);
-  const since=new Date(now);since.setUTCHours(0,0,0,0);since.setDate(since.getDate()-days);
-  const slice=histData.filter(h=>days>=9999||new Date(h.timestamp)>=since);
-  chart.data.labels=slice.map(h=>h.timestamp.slice(0,10));
-  chart.data.datasets[0].data=slice.map(h=>h[region]);chart.update();
-  const latestVal=slice.at(-1)?.[region]??0,prevVal=slice.length>1?slice.at(-2)[region]:latestVal;
-  const change=latestVal-prevVal,pct=prevVal?change/prevVal*100:0,tfLabel={1:'1-day',7:'1-week',30:'1-month',182:'6-month',365:'1-year',9999:'period'}[days]||'';
-  statsDiv.innerHTML=`<div><p class="text-gray-500">Value</p><p class="font-medium">$${fmt(latestVal)}</p></div>
-  <div><p class="text-gray-500">Δ ${tfLabel}</p><p class="${change>=0?'text-green-600':'text-red-600'}">${change>=0?'+':''}${fmt(change)} (${pct.toFixed(2)}%)</p></div>
-  <div><p class="text-gray-500">Updated</p><p>${new Date(latestData.last_updated).toLocaleString()}</p></div>`;
- }
- regionSel.addEventListener('change',render);tfSel.addEventListener('change',render);render();
+
+/* 3)  Widget logic ----------------------------------------------------- */
+function runWidget(latestData, histData) {
+  const regionSel = document.getElementById('regionSel');
+  const tfSel     = document.getElementById('tfSel');
+  const statsDiv  = document.getElementById('stats');
+
+  // build region list + default to All
+  const regions = [...new Set(latestData.components.map(c => c.region)), "All"];
+  regionSel.innerHTML = regions.map(r => `<option>${r}</option>`).join('');
+  regionSel.value = "All";
+
+  // init Chart.js
+  const ctx = document.getElementById('chart');
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels: [], datasets: [
+      { data: [], tension: 0.3, borderWidth: 3, pointRadius: 0,
+        borderColor: '#F5A623', fill: false }
+    ]},
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { backgroundColor:'#FFF', titleColor:'#111827',
+                   bodyColor:'#111827', borderColor:'#E5E7EB', borderWidth:1 }
+      },
+      scales: {
+        x: { ticks:{ color:'#6B7280' } },
+        y: { ticks:{ color:'#6B7280' } }
+      }
+    }
+  });
+
+  const fmt = x => Number(x).toLocaleString(undefined,{maximumFractionDigits:2});
+
+  function render() {
+    const region = regionSel.value;
+    const days   = +tfSel.value;
+
+    /* ── midnight-aware cutoff: today-days at 00:00 UTC ───────────── */
+    const now   = new Date(latestData.last_updated);
+    const since = new Date(now);
+    since.setUTCHours(0,0,0,0);          // midnight UTC
+    since.setDate(since.getDate() - days);
+
+    const slice = histData.filter(h =>
+      days >= 9999 || new Date(h.timestamp) >= since);
+
+    chart.data.labels = slice.map(h => h.timestamp.slice(0,10));
+    chart.data.datasets[0].data = slice.map(h => h[region]);
+    chart.update();
+
+    // headline stats from latest.json (always current)
+    const latestVal = latestData.values[region] ?? 0;
+    const prevVal   = slice.length ? slice.at(-1)[region] : latestVal;
+    const change    = latestVal - prevVal;
+    const pct       = prevVal ? change/prevVal*100 : 0;
+    const tfLabel   = {1:'1-day',7:'1-week',30:'1-month',182:'6-month',365:'1-year',9999:'period'}[days]||'';
+
+    statsDiv.innerHTML = `
+      <div>
+        <p class="text-gray-500">Value</p>
+        <p class="font-medium">$${fmt(latestVal)}</p>
+      </div>
+      <div>
+        <p class="text-gray-500">Δ ${tfLabel}</p>
+        <p class="${change>=0?'text-green-600':'text-red-600'}">
+          ${change>=0?'+':''}${fmt(change)} (${pct.toFixed(2)}%)
+        </p>
+      </div>
+      <div>
+        <p class="text-gray-500">Updated</p>
+        <p>${new Date(latestData.last_updated).toLocaleString()}</p>
+      </div>`;
+  }
+
+  regionSel.addEventListener('change', render);
+  tfSel.addEventListener('change', render);
+  render();
 }
-</script></body></html>
+</script>
+</body>
+</html>
