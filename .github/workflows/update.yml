@@ -1,24 +1,36 @@
-name: Refresh Gaming Index
+name: Update Gaming Index
 
 on:
   schedule:
-    - cron: '0 * * * *'  # hourly
-    - cron: '0 0 * * *'  # daily
-  workflow_dispatch:
+    - cron: '0 * * * *'     # Hourly update
+    - cron: '0 0 * * *'     # Daily full refresh
+  workflow_dispatch:        # Manual trigger from GitHub
 
 jobs:
-  build:
+  refresh:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-      - run: pip install yfinance pandas openpyxl
-      - run: python build_index.py
-      - run: python backfill_history.py
-      - name: Commit changes
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add latest.json history.csv
-          git commit -m "Auto-refresh index"
-          git push
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: pip install pandas yfinance openpyxl
+
+    - name: Run build_index.py
+      run: python build_index.py
+
+    - name: Run backfill_history.py
+      run: python backfill_history.py
+
+    - name: Commit and push if changes
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add latest.json history.csv
+        git diff --quiet && git diff --staged --quiet || (git commit -m "🔁 Auto-update index"; git push)
