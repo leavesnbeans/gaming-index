@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-06-26T23:35:17.730863+00:00",
+  "last_updated": "2025-06-27T03:40:39.297504+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -93,7 +93,7 @@
     },
     {
       "symbol": "DKNG",
-      "price": 42.24,
+      "price": 42.23,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -147,7 +147,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.169,
+      "price": 10.16,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -255,10 +255,10 @@
     }
   ],
   "values": {
-    "All": 24.06684705882354,
-    "North America": 16.905955882352945,
+    "All": 24.066567647058836,
+    "North America": 16.905808823529416,
     "Europe": 1.5022294117647061,
-    "Asia-Pacific": 4.582485294117648,
+    "Asia-Pacific": 4.582352941176472,
     "Other": 1.0761764705882357
   }
 }
