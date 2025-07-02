@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-07-01T23:33:56.165252+00:00",
+  "last_updated": "2025-07-02T03:42:07.141560+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -57,7 +57,7 @@
     },
     {
       "symbol": "CTM",
-      "price": 1.04,
+      "price": 1.03,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -123,7 +123,7 @@
     },
     {
       "symbol": "FLL",
-      "price": 3.925,
+      "price": 3.94,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -135,7 +135,7 @@
     },
     {
       "symbol": "GCOR",
-      "price": 41.185,
+      "price": 41.18,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -147,7 +147,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.16,
+      "price": 10.15,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -177,7 +177,7 @@
     },
     {
       "symbol": "MLCO",
-      "price": 8.05,
+      "price": 8.06,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -207,13 +207,13 @@
     },
     {
       "symbol": "PTEC",
-      "price": 37.19,
+      "price": 37.3831,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
     {
       "symbol": "PBL",
-      "price": 29.3,
+      "price": 29.2976,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -249,16 +249,16 @@
     },
     {
       "symbol": "WYNN",
-      "price": 101.941,
+      "price": 101.96,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 24.813397058823533,
-    "North America": 17.60655882352942,
-    "Europe": 1.4913970588235297,
-    "Asia-Pacific": 4.664705882352942,
+    "All": 24.816480882352945,
+    "North America": 17.6071705882353,
+    "Europe": 1.4940161764705886,
+    "Asia-Pacific": 4.664558823529413,
     "Other": 1.0507352941176473
   }
 }
