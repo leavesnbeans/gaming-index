@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-07-02T23:38:04.630524+00:00",
+  "last_updated": "2025-07-03T03:43:36.377429+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -75,7 +75,7 @@
     },
     {
       "symbol": "CDRO",
-      "price": 8.32,
+      "price": 8.35,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -93,7 +93,7 @@
     },
     {
       "symbol": "DKNG",
-      "price": 41.31,
+      "price": 41.32,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -147,13 +147,13 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.13,
+      "price": 10.155,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
     {
       "symbol": "GMGI",
-      "price": 1.78,
+      "price": 1.77,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -165,13 +165,13 @@
     },
     {
       "symbol": "LNW",
-      "price": 99.2,
+      "price": 99.15,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "MLCO",
-      "price": 8.42,
+      "price": 8.43,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -183,13 +183,13 @@
     },
     {
       "symbol": "MCRI",
-      "price": 89.42,
+      "price": 89.44,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "PENN",
-      "price": 18.62,
+      "price": 18.61,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 29.2794,
+      "price": 29.3283,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -249,10 +249,10 @@
     }
   ],
   "values": {
-    "All": 24.62410882352942,
-    "North America": 17.486461764705883,
+    "All": 24.6251955882353,
+    "North America": 17.487180882352945,
     "Europe": 1.4947058823529416,
-    "Asia-Pacific": 4.58779411764706,
+    "Asia-Pacific": 4.588161764705883,
     "Other": 1.0551470588235297
   }
 }
