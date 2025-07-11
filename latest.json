@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-07-10T23:36:20.881241+00:00",
+  "last_updated": "2025-07-11T03:51:15.015587+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -57,7 +57,7 @@
     },
     {
       "symbol": "CTM",
-      "price": 1.19,
+      "price": 1.21,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -69,7 +69,7 @@
     },
     {
       "symbol": "CHDN",
-      "price": 106.81,
+      "price": 106.8,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -135,7 +135,7 @@
     },
     {
       "symbol": "GCOR",
-      "price": 41.0311,
+      "price": 41.035,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -147,7 +147,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.18,
+      "price": 10.185,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 29.49,
+      "price": 29.5156,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -249,10 +249,10 @@
     }
   ],
   "values": {
-    "All": 25.234722058823536,
-    "North America": 18.086029411764706,
-    "Europe": 1.564427941176471,
-    "Asia-Pacific": 4.536911764705884,
+    "All": 25.235376470588243,
+    "North America": 18.086258823529413,
+    "Europe": 1.564779411764706,
+    "Asia-Pacific": 4.536985294117649,
     "Other": 1.0473529411764708
   }
 }
