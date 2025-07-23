@@ -1,9 +1,9 @@
 {
-  "last_updated": "2025-07-23T01:57:23.236859+00:00",
+  "last_updated": "2025-07-23T03:42:59.477746+00:00",
   "components": [
     {
       "symbol": "ACEL",
-      "price": 12.765,
+      "price": 12.77,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -147,7 +147,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.18,
+      "price": 10.16,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -201,7 +201,7 @@
     },
     {
       "symbol": "PTEC",
-      "price": 39.31,
+      "price": 39.3203,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -225,7 +225,7 @@
     },
     {
       "symbol": "RSI",
-      "price": 14.63,
+      "price": 14.64,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -249,10 +249,10 @@
     }
   ],
   "values": {
-    "All": 25.309720588235297,
-    "North America": 18.22191176470589,
-    "Europe": 1.5473676470588238,
-    "Asia-Pacific": 4.564705882352943,
+    "All": 25.30979852941177,
+    "North America": 18.222132352941184,
+    "Europe": 1.547519117647059,
+    "Asia-Pacific": 4.564411764705883,
     "Other": 0.9757352941176471
   }
 }
