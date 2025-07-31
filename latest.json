@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-07-31T01:58:55.307808+00:00",
+  "last_updated": "2025-07-31T03:46:34.171321+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -87,7 +87,7 @@
     },
     {
       "symbol": "DDI",
-      "price": 9.705,
+      "price": 9.7,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -147,7 +147,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.13,
+      "price": 10.14,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 29.83,
+      "price": 29.8882,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -249,10 +249,10 @@
     }
   ],
   "values": {
-    "All": 25.43723970588235,
-    "North America": 18.44786764705882,
+    "All": 25.43816911764706,
+    "North America": 18.448649999999997,
     "Europe": 1.5477544117647062,
-    "Asia-Pacific": 4.454558823529412,
+    "Asia-Pacific": 4.4547058823529415,
     "Other": 0.9870588235294121
   }
 }
