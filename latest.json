@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-08-11T23:21:22.624267+00:00",
+  "last_updated": "2025-08-12T01:26:09.176118+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -243,14 +243,14 @@
     },
     {
       "symbol": "WYNN",
-      "price": 108.63,
+      "price": 108.64,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 24.49765147058824,
-    "North America": 17.39589705882353,
+    "All": 24.49779852941177,
+    "North America": 17.396044117647058,
     "Europe": 1.567002941176471,
     "Asia-Pacific": 4.510633823529413,
     "Other": 1.0241176470588238
