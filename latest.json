@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-08-21T01:42:44.282172+00:00",
+  "last_updated": "2025-08-21T03:09:38.002609+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -69,7 +69,7 @@
     },
     {
       "symbol": "CHDN",
-      "price": 102.509,
+      "price": 102.51,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 29.8583,
+      "price": 29.9625,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -249,8 +249,8 @@
     }
   ],
   "values": {
-    "All": 25.221872058823536,
-    "North America": 17.96275441176471,
+    "All": 25.223419117647065,
+    "North America": 17.964301470588243,
     "Europe": 1.573529411764706,
     "Asia-Pacific": 4.638529411764707,
     "Other": 1.047058823529412
