@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-08-28T01:40:48.192250+00:00",
+  "last_updated": "2025-08-28T03:04:15.747759+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -93,7 +93,7 @@
     },
     {
       "symbol": "DKNG",
-      "price": 47.819,
+      "price": 47.8,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -147,7 +147,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.23,
+      "price": 10.24,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 30.26,
+      "price": 30.2615,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -243,16 +243,16 @@
     },
     {
       "symbol": "WYNN",
-      "price": 123.21,
+      "price": 123.2,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 26.046013235294122,
-    "North America": 18.839911764705892,
+    "All": 26.045755882352942,
+    "North America": 18.839507352941187,
     "Europe": 1.5696308823529415,
-    "Asia-Pacific": 4.569411764705883,
+    "Asia-Pacific": 4.5695588235294125,
     "Other": 1.067058823529412
   }
 }
