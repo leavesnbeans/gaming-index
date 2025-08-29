@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-08-29T01:40:16.658418+00:00",
+  "last_updated": "2025-08-29T03:04:02.052669+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -147,7 +147,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.229,
+      "price": 10.225,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 30.44,
+      "price": 30.3026,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -249,10 +249,10 @@
     }
   ],
   "values": {
-    "All": 26.104691176470592,
-    "North America": 18.892794117647064,
+    "All": 26.102611764705884,
+    "North America": 18.89077352941177,
     "Europe": 1.5669117647058828,
-    "Asia-Pacific": 4.57204411764706,
+    "Asia-Pacific": 4.571985294117648,
     "Other": 1.0729411764705883
   }
 }
