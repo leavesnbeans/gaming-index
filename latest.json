@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-09-11T04:25:23.020520+00:00",
+  "last_updated": "2025-09-11T05:20:57.247589+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -46,6 +46,12 @@
     {
       "symbol": "BYD",
       "price": 85.27,
+      "weight": 0.01470588235294118,
+      "region": "North America"
+    },
+    {
+      "symbol": "BRAG",
+      "price": 2.6,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -249,8 +255,8 @@
     }
   ],
   "values": {
-    "All": 25.659617647058834,
-    "North America": 18.101382352941183,
+    "All": 25.697852941176482,
+    "North America": 18.139617647058827,
     "Europe": 1.573088235294118,
     "Asia-Pacific": 4.921176470588237,
     "Other": 1.0639705882352943
