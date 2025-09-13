@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-09-13T02:49:36.467904+00:00",
+  "last_updated": "2025-09-13T03:23:31.452554+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -141,7 +141,7 @@
     },
     {
       "symbol": "GCOR",
-      "price": 41.89,
+      "price": 41.889,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -153,7 +153,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.345,
+      "price": 10.3251,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -213,7 +213,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 30.6,
+      "price": 30.6872,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -255,10 +255,10 @@
     }
   ],
   "values": {
-    "All": 25.454632352941182,
-    "North America": 17.89588235294118,
-    "Europe": 1.5795588235294122,
-    "Asia-Pacific": 4.893308823529413,
+    "All": 25.455607352941183,
+    "North America": 17.897164705882354,
+    "Europe": 1.579544117647059,
+    "Asia-Pacific": 4.893016176470589,
     "Other": 1.0858823529411767
   }
 }
