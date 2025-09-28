@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-09-28T19:15:34.685144+00:00",
+  "last_updated": "2025-09-28T20:21:19.833561+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -234,11 +234,23 @@
       "price": 28.97,
       "weight": 0.01470588235294118,
       "region": "North America"
+    },
+    {
+      "symbol": "SGHC",
+      "price": 13.3,
+      "weight": 0.01470588235294118,
+      "region": "North America"
+    },
+    {
+      "symbol": "WYNN",
+      "price": 128.97,
+      "weight": 0.01470588235294118,
+      "region": "North America"
     }
   ],
   "values": {
-    "All": 23.031138235294122,
-    "North America": 15.92904852941177,
+    "All": 25.123344117647065,
+    "North America": 18.021254411764712,
     "Europe": 0.9838544117647061,
     "Asia-Pacific": 5.064852941176472,
     "Other": 1.0533823529411765
