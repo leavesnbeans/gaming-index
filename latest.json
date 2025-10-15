@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-10-15T01:41:39.184363+00:00",
+  "last_updated": "2025-10-15T03:06:52.224520+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -69,7 +69,7 @@
     },
     {
       "symbol": "CNTY",
-      "price": 2.32,
+      "price": 2.33,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -93,13 +93,13 @@
     },
     {
       "symbol": "DDI",
-      "price": 8.88,
+      "price": 8.86,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "DKNG",
-      "price": 34.37,
+      "price": 34.36,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -129,19 +129,19 @@
     },
     {
       "symbol": "FLL",
-      "price": 2.5,
+      "price": 2.52,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "GAMB",
-      "price": 7.85,
+      "price": 7.84,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "GCOR",
-      "price": 41.91,
+      "price": 41.9095,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -153,7 +153,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.29,
+      "price": 10.305,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -189,13 +189,13 @@
     },
     {
       "symbol": "MCRI",
-      "price": 96.234,
+      "price": 96.31,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "PENN",
-      "price": 17.175,
+      "price": 17.17,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 30.9,
+      "price": 30.8275,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -219,7 +219,7 @@
     },
     {
       "symbol": "RRR",
-      "price": 57.69,
+      "price": 57.67,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -249,10 +249,10 @@
     }
   ],
   "values": {
-    "All": 23.545279411764714,
-    "North America": 16.47175,
-    "Europe": 0.9926470588235297,
-    "Asia-Pacific": 5.011764705882354,
+    "All": 23.545029411764716,
+    "North America": 16.471286764705884,
+    "Europe": 0.9926397058823531,
+    "Asia-Pacific": 5.011985294117649,
     "Other": 1.0691176470588237
   }
 }
