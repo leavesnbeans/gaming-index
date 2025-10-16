@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-10-15T23:19:13.793774+00:00",
+  "last_updated": "2025-10-16T01:20:24.420673+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -99,7 +99,7 @@
     },
     {
       "symbol": "DKNG",
-      "price": 35.505,
+      "price": 35.5,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -111,7 +111,7 @@
     },
     {
       "symbol": "EVOK",
-      "price": 4.68,
+      "price": 4.685,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -250,8 +250,8 @@
   ],
   "values": {
     "All": 23.487860294117652,
-    "North America": 16.52605,
-    "Europe": 0.9919500000000002,
+    "North America": 16.525976470588237,
+    "Europe": 0.992023529411765,
     "Asia-Pacific": 4.891330882352942,
     "Other": 1.0785294117647062
   }
