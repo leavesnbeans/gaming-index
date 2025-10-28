@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-10-28T03:09:38.799129+00:00",
+  "last_updated": "2025-10-28T04:26:20.871615+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -99,7 +99,7 @@
     },
     {
       "symbol": "DKNG",
-      "price": 32.955,
+      "price": 32.96,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -141,7 +141,7 @@
     },
     {
       "symbol": "GCOR",
-      "price": 42.1005,
+      "price": 42.1041,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.71,
+      "price": 31.7574,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -243,15 +243,15 @@
     },
     {
       "symbol": "WYNN",
-      "price": 125.4,
+      "price": 125.44,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 23.667892647058828,
-    "North America": 16.858619117647066,
-    "Europe": 1.003685294117647,
+    "All": 23.66930441176471,
+    "North America": 16.859977941176478,
+    "Europe": 1.0037382352941178,
     "Asia-Pacific": 4.716470588235295,
     "Other": 1.0891176470588237
   }
