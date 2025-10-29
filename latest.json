@@ -1,105 +1,105 @@
 {
-  "last_updated": "2025-10-29T19:18:00.345407+00:00",
+  "last_updated": "2025-10-29T20:25:32.467786+00:00",
   "components": [
     {
       "symbol": "ACEL",
-      "price": 10.12,
+      "price": 10.08,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "AGI",
-      "price": 32.05,
+      "price": 31.87,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
     {
       "symbol": "ALL",
-      "price": 188.93,
+      "price": 190.0,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
     {
       "symbol": "BALY",
-      "price": 18.18,
+      "price": 18.39,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "BNJ",
-      "price": 15.87,
+      "price": 15.8096,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
     {
       "symbol": "BBT",
-      "price": 23.33,
+      "price": 23.12,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
     {
       "symbol": "BRAG.TO",
-      "price": 2.485,
+      "price": 2.45,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "BYD",
-      "price": 77.255,
+      "price": 76.81,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "BRAG",
-      "price": 2.485,
+      "price": 2.45,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "CZR",
-      "price": 19.145,
+      "price": 18.72,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "CTM",
-      "price": 1.045,
+      "price": 1.07,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
     {
       "symbol": "CNTY",
-      "price": 2.06,
+      "price": 2.03,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "CHDN",
-      "price": 101.01,
+      "price": 100.63,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "CDRO",
-      "price": 6.28,
+      "price": 6.21,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "PLUS",
-      "price": 73.03,
+      "price": 72.42,
       "weight": 0.01470588235294118,
       "region": "Other"
     },
     {
       "symbol": "DDI",
-      "price": 9.13,
+      "price": 9.09,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "DKNG",
-      "price": 30.945,
+      "price": 30.65,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -111,43 +111,43 @@
     },
     {
       "symbol": "EVOK",
-      "price": 4.84,
+      "price": 5.09,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
     {
       "symbol": "EVO",
-      "price": 4.115,
+      "price": 4.12,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
     {
       "symbol": "FLUT",
-      "price": 235.93,
+      "price": 236.53,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "FLL",
-      "price": 2.53,
+      "price": 2.52,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "GAMB",
-      "price": 7.23,
+      "price": 7.24,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "GCOR",
-      "price": 41.97,
+      "price": 41.93,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
     {
       "symbol": "GENI",
-      "price": 11.725,
+      "price": 11.73,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -165,37 +165,37 @@
     },
     {
       "symbol": "LVS",
-      "price": 58.88,
+      "price": 58.78,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "LNW",
-      "price": 74.04,
+      "price": 73.37,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "MLCO",
-      "price": 8.135,
+      "price": 8.09,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "MGM",
-      "price": 31.2542,
+      "price": 31.21,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "MCRI",
-      "price": 88.87,
+      "price": 88.9,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "PENN",
-      "price": 16.715,
+      "price": 16.61,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -213,19 +213,19 @@
     },
     {
       "symbol": "PBH",
-      "price": 60.935,
+      "price": 60.71,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
     {
       "symbol": "RRR",
-      "price": 53.015,
+      "price": 52.26,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "RSI",
-      "price": 18.09,
+      "price": 18.17,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -237,22 +237,22 @@
     },
     {
       "symbol": "SGHC",
-      "price": 11.04,
+      "price": 11.05,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "WYNN",
-      "price": 121.37,
+      "price": 120.87,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 22.943076470588238,
-    "North America": 16.230797058823534,
-    "Europe": 0.9976470588235296,
-    "Asia-Pacific": 4.640661764705883,
-    "Other": 1.0739705882352943
+    "All": 22.898155882352953,
+    "North America": 16.18551470588236,
+    "Europe": 1.0002882352941178,
+    "Asia-Pacific": 4.647352941176472,
+    "Other": 1.0650000000000002
   }
 }
