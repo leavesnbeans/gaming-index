@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-11-04T03:12:36.823178+00:00",
+  "last_updated": "2025-11-04T04:25:44.703646+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -69,19 +69,19 @@
     },
     {
       "symbol": "CNTY",
-      "price": 1.89,
+      "price": 1.895,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "CHDN",
-      "price": 98.6,
+      "price": 98.61,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "CDRO",
-      "price": 6.15,
+      "price": 6.12,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -93,7 +93,7 @@
     },
     {
       "symbol": "DDI",
-      "price": 8.87,
+      "price": 8.85,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -111,13 +111,13 @@
     },
     {
       "symbol": "EVOK",
-      "price": 4.58,
+      "price": 4.59,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
     {
       "symbol": "EVO",
-      "price": 4.01,
+      "price": 4.02,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -153,7 +153,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.29,
+      "price": 10.2901,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -177,7 +177,7 @@
     },
     {
       "symbol": "MLCO",
-      "price": 8.345,
+      "price": 8.35,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -189,13 +189,13 @@
     },
     {
       "symbol": "MCRI",
-      "price": 90.12,
+      "price": 90.17,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "PENN",
-      "price": 16.625,
+      "price": 16.62,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.7,
+      "price": 31.735,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -231,7 +231,7 @@
     },
     {
       "symbol": "SRAD",
-      "price": 26.08,
+      "price": 26.09,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -249,10 +249,10 @@
     }
   ],
   "values": {
-    "All": 22.99117647058824,
-    "North America": 16.251911764705884,
-    "Europe": 0.9875000000000003,
-    "Asia-Pacific": 4.68029411764706,
+    "All": 22.99235441176472,
+    "North America": 16.25279411764706,
+    "Europe": 0.987794117647059,
+    "Asia-Pacific": 4.680295588235294,
     "Other": 1.0714705882352944
   }
 }
