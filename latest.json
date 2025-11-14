@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-11-14T09:24:27.305084+00:00",
+  "last_updated": "2025-11-14T10:25:45.918039+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -170,12 +170,6 @@
       "region": "North America"
     },
     {
-      "symbol": "LNW",
-      "price": 86.22,
-      "weight": 0.01470588235294118,
-      "region": "North America"
-    },
-    {
       "symbol": "MLCO",
       "price": 9.0,
       "weight": 0.01470588235294118,
@@ -249,8 +243,8 @@
     }
   ],
   "values": {
-    "All": 23.483701470588244,
-    "North America": 16.090835294117653,
+    "All": 22.215760294117654,
+    "North America": 14.822894117647063,
     "Europe": 1.060954411764706,
     "Asia-Pacific": 5.000588235294119,
     "Other": 1.3313235294117651
