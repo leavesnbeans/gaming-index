@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-11-20T03:12:03.725382+00:00",
+  "last_updated": "2025-11-20T04:26:13.974466+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -57,7 +57,7 @@
     },
     {
       "symbol": "CZR",
-      "price": 19.97,
+      "price": 19.98,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -93,7 +93,7 @@
     },
     {
       "symbol": "DDI",
-      "price": 9.16,
+      "price": 9.225,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -129,19 +129,19 @@
     },
     {
       "symbol": "FLL",
-      "price": 2.39,
+      "price": 2.36,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "GAMB",
-      "price": 4.78,
+      "price": 4.79,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "GCOR",
-      "price": 41.62,
+      "price": 41.6192,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -153,7 +153,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.31,
+      "price": 10.305,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -171,7 +171,7 @@
     },
     {
       "symbol": "MLCO",
-      "price": 8.77,
+      "price": 8.75,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -189,7 +189,7 @@
     },
     {
       "symbol": "PENN",
-      "price": 13.98,
+      "price": 13.96,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -201,7 +201,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.06,
+      "price": 30.9005,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -225,7 +225,7 @@
     },
     {
       "symbol": "SRAD",
-      "price": 21.695,
+      "price": 21.7,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -243,10 +243,10 @@
     }
   ],
   "values": {
-    "All": 21.77085441176471,
-    "North America": 14.44556029411765,
-    "Europe": 1.0522058823529414,
-    "Asia-Pacific": 4.959705882352942,
+    "All": 21.76871764705883,
+    "North America": 14.443508823529417,
+    "Europe": 1.052194117647059,
+    "Asia-Pacific": 4.959632352941178,
     "Other": 1.3133823529411768
   }
 }
