@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-11-26T03:17:32.703991+00:00",
+  "last_updated": "2025-11-26T04:29:39.926862+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -81,7 +81,7 @@
     },
     {
       "symbol": "CDRO",
-      "price": 6.84,
+      "price": 6.75,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -201,7 +201,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.2243,
+      "price": 31.2459,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -231,7 +231,7 @@
     },
     {
       "symbol": "SGHC",
-      "price": 11.715,
+      "price": 11.72,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -243,8 +243,8 @@
     }
   ],
   "values": {
-    "All": 22.505980882352947,
-    "North America": 15.072010294117653,
+    "All": 22.505048529411766,
+    "North America": 15.071077941176476,
     "Europe": 1.0642647058823531,
     "Asia-Pacific": 5.036323529411765,
     "Other": 1.3333823529411768
