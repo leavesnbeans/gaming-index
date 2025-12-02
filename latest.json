@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-12-02T14:26:06.383055+00:00",
+  "last_updated": "2025-12-02T15:27:47.766339+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -9,19 +9,19 @@
     },
     {
       "symbol": "AGI",
-      "price": 37.01,
+      "price": 36.715,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
     {
       "symbol": "ALL",
-      "price": 210.0,
+      "price": 209.18,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
     {
       "symbol": "BALY",
-      "price": 17.7,
+      "price": 17.81,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -33,7 +33,7 @@
     },
     {
       "symbol": "BBT",
-      "price": 25.88,
+      "price": 26.02,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -45,7 +45,7 @@
     },
     {
       "symbol": "BYD",
-      "price": 82.24,
+      "price": 82.69,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -57,13 +57,13 @@
     },
     {
       "symbol": "CZR",
-      "price": 23.15,
+      "price": 23.13,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "CTM",
-      "price": 1.02,
+      "price": 1.045,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -75,13 +75,13 @@
     },
     {
       "symbol": "CHDN",
-      "price": 110.83,
+      "price": 111.03,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "CDRO",
-      "price": 7.18,
+      "price": 7.1,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -93,13 +93,13 @@
     },
     {
       "symbol": "DDI",
-      "price": 9.11,
+      "price": 9.31,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "DKNG",
-      "price": 33.87,
+      "price": 33.69,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -243,10 +243,10 @@
     }
   ],
   "values": {
-    "All": 22.836405882352953,
-    "North America": 15.441845588235296,
-    "Europe": 1.0592661764705884,
-    "Asia-Pacific": 5.046029411764707,
+    "All": 22.83243529411766,
+    "North America": 15.451845588235297,
+    "Europe": 1.059633823529412,
+    "Asia-Pacific": 5.03169117647059,
     "Other": 1.2892647058823532
   }
 }
