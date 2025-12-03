@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-12-03T03:20:10.925594+00:00",
+  "last_updated": "2025-12-03T04:31:51.278533+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -39,7 +39,7 @@
     },
     {
       "symbol": "BRAG.TO",
-      "price": 2.21,
+      "price": 2.2,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -51,7 +51,7 @@
     },
     {
       "symbol": "BRAG",
-      "price": 2.21,
+      "price": 2.2,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -111,7 +111,7 @@
     },
     {
       "symbol": "EVOK",
-      "price": 10.915,
+      "price": 10.91,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -153,7 +153,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.29,
+      "price": 10.295,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -201,7 +201,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.36,
+      "price": 31.358,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -243,10 +243,10 @@
     }
   ],
   "values": {
-    "All": 22.81946176470588,
-    "North America": 15.475917647058829,
-    "Europe": 1.0614117647058827,
-    "Asia-Pacific": 5.008823529411766,
+    "All": 22.819138235294115,
+    "North America": 15.475594117647065,
+    "Europe": 1.0613382352941179,
+    "Asia-Pacific": 5.00889705882353,
     "Other": 1.2733088235294119
   }
 }
