@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-12-04T03:22:08.767213+00:00",
+  "last_updated": "2025-12-04T04:34:00.847356+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -57,7 +57,7 @@
     },
     {
       "symbol": "CZR",
-      "price": 23.515,
+      "price": 23.52,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -99,7 +99,7 @@
     },
     {
       "symbol": "DKNG",
-      "price": 34.57,
+      "price": 34.55,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -117,7 +117,7 @@
     },
     {
       "symbol": "EVO",
-      "price": 3.2,
+      "price": 3.19,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -135,7 +135,7 @@
     },
     {
       "symbol": "GAMB",
-      "price": 5.475,
+      "price": 5.48,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -153,7 +153,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.3,
+      "price": 10.2995,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -201,7 +201,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.29,
+      "price": 31.3729,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -213,7 +213,7 @@
     },
     {
       "symbol": "RRR",
-      "price": 58.22,
+      "price": 58.23,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -243,10 +243,10 @@
     }
   ],
   "values": {
-    "All": 22.904752941176476,
-    "North America": 15.536297058823536,
-    "Europe": 1.0631617647058826,
-    "Asia-Pacific": 5.015147058823531,
+    "All": 22.90581764705882,
+    "North America": 15.537516176470596,
+    "Europe": 1.0630147058823534,
+    "Asia-Pacific": 5.015139705882355,
     "Other": 1.2901470588235298
   }
 }
