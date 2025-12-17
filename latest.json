@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-12-17T01:48:22.910699+00:00",
+  "last_updated": "2025-12-17T03:22:42.734140+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -194,12 +194,6 @@
       "region": "North America"
     },
     {
-      "symbol": "AGS",
-      "price": 12.49,
-      "weight": 0.01470588235294118,
-      "region": "North America"
-    },
-    {
       "symbol": "PBL",
       "price": 31.4,
       "weight": 0.01470588235294118,
@@ -243,8 +237,8 @@
     }
   ],
   "values": {
-    "All": 23.3399205882353,
-    "North America": 15.82595,
+    "All": 23.156244117647066,
+    "North America": 15.642273529411765,
     "Europe": 1.0569117647058826,
     "Asia-Pacific": 5.095147058823531,
     "Other": 1.3619117647058827
