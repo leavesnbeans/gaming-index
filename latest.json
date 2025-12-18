@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-12-18T01:48:25.479126+00:00",
+  "last_updated": "2025-12-18T03:23:51.375190+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -100,12 +100,6 @@
     {
       "symbol": "DKNG",
       "price": 34.05,
-      "weight": 0.01470588235294118,
-      "region": "North America"
-    },
-    {
-      "symbol": "EVRI",
-      "price": 14.24,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -237,8 +231,8 @@
     }
   ],
   "values": {
-    "All": 23.046288235294128,
-    "North America": 15.572552941176474,
+    "All": 22.836876470588244,
+    "North America": 15.363141176470592,
     "Europe": 1.0556617647058828,
     "Asia-Pacific": 5.10733823529412,
     "Other": 1.3107352941176473
