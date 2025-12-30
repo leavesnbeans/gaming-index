@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-12-30T03:40:04.292287+00:00",
+  "last_updated": "2025-12-30T04:41:13.000222+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -57,7 +57,7 @@
     },
     {
       "symbol": "CZR",
-      "price": 24.035,
+      "price": 24.03,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -99,7 +99,7 @@
     },
     {
       "symbol": "DKNG",
-      "price": 34.535,
+      "price": 34.54,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -189,7 +189,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.7401,
+      "price": 31.7954,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -231,8 +231,8 @@
     }
   ],
   "values": {
-    "All": 22.803529411764707,
-    "North America": 15.30670147058824,
+    "All": 22.804342647058824,
+    "North America": 15.307514705882358,
     "Europe": 1.0594750000000002,
     "Asia-Pacific": 5.12044117647059,
     "Other": 1.3169117647058826
