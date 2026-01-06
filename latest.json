@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-06T03:41:57.604361+00:00",
+  "last_updated": "2026-01-06T04:42:33.499776+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -87,7 +87,7 @@
     },
     {
       "symbol": "PLUS",
-      "price": 86.39,
+      "price": 86.5,
       "weight": 0.01470588235294118,
       "region": "Other"
     },
@@ -123,13 +123,13 @@
     },
     {
       "symbol": "FLL",
-      "price": 2.64,
+      "price": 2.62,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "GAMB",
-      "price": 5.435,
+      "price": 5.43,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -147,13 +147,13 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.32,
+      "price": 10.3185,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
     {
       "symbol": "GMGI",
-      "price": 0.73125,
+      "price": 0.7321,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -165,7 +165,7 @@
     },
     {
       "symbol": "MLCO",
-      "price": 7.525,
+      "price": 7.52,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -177,13 +177,13 @@
     },
     {
       "symbol": "MCRI",
-      "price": 96.31,
+      "price": 96.33,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "PENN",
-      "price": 15.145,
+      "price": 15.14,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -201,7 +201,7 @@
     },
     {
       "symbol": "RRR",
-      "price": 61.94,
+      "price": 61.87,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -225,16 +225,16 @@
     },
     {
       "symbol": "WYNN",
-      "price": 119.65,
+      "price": 119.68,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 22.729650735294125,
-    "North America": 15.334503676470595,
+    "All": 22.73045000000001,
+    "North America": 15.333707352941182,
     "Europe": 1.0586764705882357,
-    "Asia-Pacific": 5.066029411764707,
-    "Other": 1.2704411764705885
+    "Asia-Pacific": 5.0660073529411775,
+    "Other": 1.2720588235294121
   }
 }
