@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-24T03:38:54.569267+00:00",
+  "last_updated": "2026-01-24T04:37:28.900544+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -57,7 +57,7 @@
     },
     {
       "symbol": "CZR",
-      "price": 23.375,
+      "price": 23.35,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -183,7 +183,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.15,
+      "price": 31.1283,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -225,8 +225,8 @@
     }
   ],
   "values": {
-    "All": 21.02655294117648,
-    "North America": 13.81199411764706,
+    "All": 21.025866176470597,
+    "North America": 13.811307352941178,
     "Europe": 0.9101470588235296,
     "Asia-Pacific": 5.021911764705884,
     "Other": 1.2825000000000002
