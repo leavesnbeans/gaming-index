@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-01-28T03:50:58.219914+00:00",
+  "last_updated": "2026-01-28T04:47:24.139422+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -141,7 +141,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.3798,
+      "price": 10.38,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -183,7 +183,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.335,
+      "price": 31.3525,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -219,16 +219,16 @@
     },
     {
       "symbol": "WYNN",
-      "price": 113.762,
+      "price": 113.77,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 20.770655882352948,
-    "North America": 13.59198235294118,
+    "All": 20.771033823529418,
+    "North America": 13.59235735294118,
     "Europe": 0.9125000000000003,
-    "Asia-Pacific": 5.015732352941178,
+    "Asia-Pacific": 5.015735294117649,
     "Other": 1.2504411764705885
   }
 }
