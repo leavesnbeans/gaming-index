@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-05T13:08:32.255788+00:00",
+  "last_updated": "2026-02-05T14:45:35.883936+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -165,19 +165,19 @@
     },
     {
       "symbol": "MGM",
-      "price": 36.93,
+      "price": 36.61,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "MCRI",
-      "price": 93.31,
+      "price": 88.92,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "PENN",
-      "price": 13.04,
+      "price": 12.89,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -195,7 +195,7 @@
     },
     {
       "symbol": "RRR",
-      "price": 63.96,
+      "price": 64.06,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "SRAD",
-      "price": 17.68,
+      "price": 17.77,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -219,14 +219,14 @@
     },
     {
       "symbol": "WYNN",
-      "price": 114.21,
+      "price": 114.46,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 20.758057352941183,
-    "North America": 13.354626470588236,
+    "All": 20.69305735294118,
+    "North America": 13.289626470588237,
     "Europe": 0.9089308823529414,
     "Asia-Pacific": 5.228470588235296,
     "Other": 1.2660294117647062
