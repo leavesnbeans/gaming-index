@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-10T02:38:03.228951+00:00",
+  "last_updated": "2026-02-10T05:06:19.594839+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -57,13 +57,13 @@
     },
     {
       "symbol": "CZR",
-      "price": 20.645,
+      "price": 20.65,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "CTM",
-      "price": 0.87255,
+      "price": 0.87,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -75,7 +75,7 @@
     },
     {
       "symbol": "CHDN",
-      "price": 94.22,
+      "price": 94.24,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -87,7 +87,7 @@
     },
     {
       "symbol": "PLUS",
-      "price": 87.3,
+      "price": 87.36,
       "weight": 0.01470588235294118,
       "region": "Other"
     },
@@ -123,7 +123,7 @@
     },
     {
       "symbol": "GAMB",
-      "price": 4.51,
+      "price": 4.5,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -147,7 +147,7 @@
     },
     {
       "symbol": "GMGI",
-      "price": 0.6415,
+      "price": 0.6375,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -159,7 +159,7 @@
     },
     {
       "symbol": "MLCO",
-      "price": 6.4,
+      "price": 6.42,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -171,7 +171,7 @@
     },
     {
       "symbol": "MCRI",
-      "price": 98.93,
+      "price": 98.91,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -183,7 +183,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.31,
+      "price": 31.315,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -207,7 +207,7 @@
     },
     {
       "symbol": "SRAD",
-      "price": 17.25,
+      "price": 17.26,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -219,16 +219,16 @@
     },
     {
       "symbol": "WYNN",
-      "price": 116.89,
+      "price": 116.94,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 20.77167720588236,
-    "North America": 13.418036764705882,
-    "Europe": 0.9059933823529415,
+    "All": 20.773639705882356,
+    "North America": 13.419154411764707,
+    "Europe": 0.9059558823529414,
     "Asia-Pacific": 5.163823529411765,
-    "Other": 1.283823529411765
+    "Other": 1.2847058823529414
   }
 }
