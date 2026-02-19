@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-19T02:27:53.620291+00:00",
+  "last_updated": "2026-02-19T04:55:12.203551+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -39,7 +39,7 @@
     },
     {
       "symbol": "BRAG.TO",
-      "price": 1.83,
+      "price": 1.82,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -51,7 +51,7 @@
     },
     {
       "symbol": "BRAG",
-      "price": 1.83,
+      "price": 1.82,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -63,19 +63,19 @@
     },
     {
       "symbol": "CTM",
-      "price": 0.9134,
+      "price": 0.9172,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
     {
       "symbol": "CNTY",
-      "price": 1.54,
+      "price": 1.55,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "CHDN",
-      "price": 90.67,
+      "price": 90.69,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -99,13 +99,13 @@
     },
     {
       "symbol": "DKNG",
-      "price": 23.195,
+      "price": 23.21,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "EVO",
-      "price": 3.605,
+      "price": 3.6,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -117,7 +117,7 @@
     },
     {
       "symbol": "FLL",
-      "price": 2.255,
+      "price": 2.25,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -141,7 +141,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.42,
+      "price": 10.425,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -171,19 +171,19 @@
     },
     {
       "symbol": "MCRI",
-      "price": 94.42,
+      "price": 94.7,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "PENN",
-      "price": 13.13,
+      "price": 13.14,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
     {
       "symbol": "PBL",
-      "price": 31.04,
+      "price": 31.0255,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -225,10 +225,10 @@
     }
   ],
   "values": {
-    "All": 20.304757352941177,
-    "North America": 12.854192647058827,
-    "Europe": 0.9108588235294119,
-    "Asia-Pacific": 5.308676470588237,
+    "All": 20.30915882352941,
+    "North America": 12.85853823529412,
+    "Europe": 0.9108411764705885,
+    "Asia-Pacific": 5.308750000000002,
     "Other": 1.231029411764706
   }
 }
