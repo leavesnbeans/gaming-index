@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-21T02:10:16.135803+00:00",
+  "last_updated": "2026-02-21T04:28:10.853555+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -75,7 +75,7 @@
     },
     {
       "symbol": "CHDN",
-      "price": 93.72,
+      "price": 93.71,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -141,7 +141,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.42,
+      "price": 10.43,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -171,7 +171,7 @@
     },
     {
       "symbol": "MCRI",
-      "price": 95.42,
+      "price": 95.39,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -183,7 +183,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.07,
+      "price": 31.107,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -225,10 +225,10 @@
     }
   ],
   "values": {
-    "All": 20.303664705882362,
-    "North America": 12.807273529411768,
+    "All": 20.30376764705883,
+    "North America": 12.807229411764707,
     "Europe": 0.9090382352941178,
-    "Asia-Pacific": 5.382205882352943,
+    "Asia-Pacific": 5.382352941176472,
     "Other": 1.2051470588235298
   }
 }
