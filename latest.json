@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-23T23:36:12.599135+00:00",
+  "last_updated": "2026-02-24T02:00:34.893527+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -39,7 +39,7 @@
     },
     {
       "symbol": "BRAG.TO",
-      "price": 1.68,
+      "price": 1.675,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -51,7 +51,7 @@
     },
     {
       "symbol": "BRAG",
-      "price": 1.68,
+      "price": 1.675,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -225,8 +225,8 @@
     }
   ],
   "values": {
-    "All": 19.818876470588247,
-    "North America": 12.361176470588239,
+    "All": 19.818729411764718,
+    "North America": 12.36102941176471,
     "Europe": 0.9072588235294121,
     "Asia-Pacific": 5.391764705882354,
     "Other": 1.1586764705882358
