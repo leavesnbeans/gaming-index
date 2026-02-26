@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-26T02:23:07.797577+00:00",
+  "last_updated": "2026-02-26T04:53:04.572461+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -27,7 +27,7 @@
     },
     {
       "symbol": "BNJ",
-      "price": 15.4527,
+      "price": 15.428,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -87,13 +87,13 @@
     },
     {
       "symbol": "PLUS",
-      "price": 77.89,
+      "price": 77.87,
       "weight": 0.01470588235294118,
       "region": "Other"
     },
     {
       "symbol": "DDI",
-      "price": 8.805,
+      "price": 8.84,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -159,7 +159,7 @@
     },
     {
       "symbol": "MLCO",
-      "price": 5.885,
+      "price": 5.9,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -183,7 +183,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.225,
+      "price": 31.2382,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -225,10 +225,10 @@
     }
   ],
   "values": {
-    "All": 20.099932352941188,
-    "North America": 12.598510294117649,
-    "Europe": 0.9095102941176474,
+    "All": 20.100204411764718,
+    "North America": 12.599439705882354,
+    "Europe": 0.9091470588235298,
     "Asia-Pacific": 5.446470588235295,
-    "Other": 1.1454411764705885
+    "Other": 1.1451470588235297
   }
 }
