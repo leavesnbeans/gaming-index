@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-27T02:21:50.170888+00:00",
+  "last_updated": "2026-02-27T04:47:52.779549+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -69,7 +69,7 @@
     },
     {
       "symbol": "CNTY",
-      "price": 1.705,
+      "price": 1.7,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -129,7 +129,7 @@
     },
     {
       "symbol": "GCOR",
-      "price": 42.11,
+      "price": 42.1097,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -141,7 +141,7 @@
     },
     {
       "symbol": "GENM",
-      "price": 10.4299,
+      "price": 10.425,
       "weight": 0.01470588235294118,
       "region": "Asia-Pacific"
     },
@@ -183,7 +183,7 @@
     },
     {
       "symbol": "PBL",
-      "price": 31.05,
+      "price": 31.1057,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -219,16 +219,16 @@
     },
     {
       "symbol": "WYNN",
-      "price": 110.12,
+      "price": 110.11,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 20.485558823529416,
-    "North America": 12.859245588235298,
-    "Europe": 0.9120500000000002,
-    "Asia-Pacific": 5.542645588235295,
+    "All": 20.486080882352947,
+    "North America": 12.859844117647063,
+    "Europe": 0.9120455882352942,
+    "Asia-Pacific": 5.542573529411765,
     "Other": 1.1716176470588238
   }
 }
