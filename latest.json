@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-02-28T01:48:13.406119+00:00",
+  "last_updated": "2026-02-28T04:17:16.712497+00:00",
   "components": [
     {
       "symbol": "ACEL",
@@ -63,7 +63,7 @@
     },
     {
       "symbol": "CTM",
-      "price": 0.9695,
+      "price": 0.9817,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -99,7 +99,7 @@
     },
     {
       "symbol": "DKNG",
-      "price": 23.86,
+      "price": 23.84,
       "weight": 0.01470588235294118,
       "region": "North America"
     },
@@ -129,7 +129,7 @@
     },
     {
       "symbol": "GCOR",
-      "price": 42.195,
+      "price": 42.19,
       "weight": 0.01470588235294118,
       "region": "Europe"
     },
@@ -219,15 +219,15 @@
     },
     {
       "symbol": "WYNN",
-      "price": 108.18,
+      "price": 108.19,
       "weight": 0.01470588235294118,
       "region": "North America"
     }
   ],
   "values": {
-    "All": 20.17521323529412,
-    "North America": 12.518088235294123,
-    "Europe": 0.9091838235294121,
+    "All": 20.17517205882353,
+    "North America": 12.517941176470593,
+    "Europe": 0.9092897058823531,
     "Asia-Pacific": 5.5617647058823545,
     "Other": 1.1861764705882356
   }
